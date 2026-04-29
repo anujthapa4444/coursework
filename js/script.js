@@ -47,11 +47,14 @@ function openProductModal(card) {
 
   if (!modal || !modalImage || !modalName || !modalPrice || !modalDescription) return;
 
+  var rawPrice = price ? price.textContent.replace(/[^0-9.]/g, "") : "";
   modalImage.src = image ? image.src : "";
   modalImage.alt = image ? image.alt : "Product image";
   modalName.textContent = title ? title.textContent : "Product details";
   modalPrice.textContent = price ? "Price: " + price.textContent : "";
   modalDescription.textContent = description;
+  modal.dataset.productName = title ? title.textContent : "";
+  modal.dataset.productPrice = rawPrice;
 
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
@@ -140,6 +143,87 @@ function bindAddToCartButtons() {
       var price = button.getAttribute("data-price");
       addToCart(name, price);
     });
+  });
+}
+
+function bindProductModalAddToCart() {
+  var addBtn = document.getElementById("modalAddToCartBtn");
+  var modal = document.getElementById("productModal");
+  if (!addBtn || !modal) return;
+
+  addBtn.addEventListener("click", function () {
+    var name = modal.dataset.productName || "";
+    var price = modal.dataset.productPrice || "";
+    if (name && price) {
+      addToCart(name, price);
+    }
+  });
+}
+
+// Open blog popup.
+function openBlogModal(card) {
+  var modal = document.getElementById("blogModal");
+  var image = card.querySelector("img");
+  var topic = card.querySelector(".badge");
+  var title = card.querySelector("h3");
+  var summary = card.querySelector("p");
+  var detail = card.getAttribute("data-detail") || "";
+  var tip = card.getAttribute("data-tip") || "";
+
+  var modalImage = document.getElementById("modalBlogImage");
+  var modalTopic = document.getElementById("modalBlogTopic");
+  var modalTitle = document.getElementById("modalBlogTitle");
+  var modalSummary = document.getElementById("modalBlogSummary");
+  var modalDetail = document.getElementById("modalBlogDetail");
+  var modalTip = document.getElementById("modalBlogTip");
+
+  if (!modal || !modalImage || !modalTopic || !modalTitle || !modalSummary || !modalDetail || !modalTip) return;
+
+  modalImage.src = image ? image.src : "";
+  modalImage.alt = image ? image.alt : "Blog topic image";
+  modalTopic.textContent = topic ? topic.textContent : "Blog";
+  modalTitle.textContent = title ? title.textContent : "Blog details";
+  modalSummary.textContent = summary ? summary.textContent : "";
+  modalDetail.textContent = detail;
+  modalTip.textContent = tip;
+
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+// Close blog popup.
+function closeBlogModal() {
+  var modal = document.getElementById("blogModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+// Add blog popup events.
+function bindBlogCardPopups() {
+  var cards = document.querySelectorAll(".blog-topic");
+  var modal = document.getElementById("blogModal");
+  var closeBtn = document.getElementById("blogModalClose");
+
+  if (!cards.length || !modal || !closeBtn) return;
+
+  cards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      openBlogModal(card);
+    });
+  });
+
+  closeBtn.addEventListener("click", closeBlogModal);
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeBlogModal();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeBlogModal();
+    }
   });
 }
 
@@ -564,7 +648,9 @@ function startHeroBackgroundSlider() {
 function initSite() {
   updateCurrentDate();
   bindAddToCartButtons();
+  bindProductModalAddToCart();
   bindProductCardPopups();
+  bindBlogCardPopups();
   bindCartDrawerButtons();
   renderCartPage();
   renderCartSidebar();
