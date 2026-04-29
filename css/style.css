@@ -162,7 +162,6 @@ body {
 
 /* Hero section styles. */
 .hero {
-  background: url("../images/hero-bg.png") center/cover no-repeat;
   min-height: 48vh;
   display: flex;
   align-items: center;
