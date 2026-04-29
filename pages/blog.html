@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Page info -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UrbanSprout blog on technology and sustainable urban gardening in Nepal."
+    />
+    <title>UrbanSprout Nepal | Blog</title>
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Blog-only CSS -->
+    <style>
+      /* Blog tags */
+      .blog-topic {
+        border-left: 4px solid #66bb6a;
+        padding-left: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top menu -->
+    <div class="navbar">
+      <div class="container nav-inner">
+        <a
+          href="../index.html"
+          style="text-align: center; color: white; text-decoration: none"
+          ><div class="brand">UrbanSprout Pokhara</div></a
+        >
+        <nav class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="blog.html" class="active">Blog</a>
+          <a href="research.html">Research</a>
+          <a href="about.html">About Us</a>
+        </nav>
+        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">☰</button>
+      </div>
+    </div>
+
+    <main class="container section">
+      <!-- Blog intro -->
+      <h1>Blog: How Technology Helps Growing Food in Cities</h1>
+      <p>
+        These simple articles talk about how phones, apps, and online groups
+        help people live in a way that cares for the earth in Pokhara and Nepal.
+      </p>
+
+      <!-- Blog cards -->
+      <section class="grid">
+        <article class="card blog-topic">
+          <span class="badge">About Technology in Urban Gardening</span>
+          <h3>Smart Ways to Grow Plants in Small Homes</h3>
+          <p>
+            Apps on your phone and sensors that check soil wetness help people
+            in Pokhara take care of plants on their balconies, even when they
+            are busy.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Positive Impact of Technology</span>
+          <h3>Saving Water with Smart Tools</h3>
+          <p>
+            Cheap timers and slow water systems connected to the internet use
+            less water and help herbs grow well on rooftops near Phewa Lake.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Negative Impact of Technology</span>
+          <h3>E-waste and Overconsumption</h3>
+          <p>
+            Too much dependency on new devices can increase e-waste. We should
+            prioritize repairable tools and long-term products.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Sustainable Gardening Boost</span>
+          <h3>How Tech Supports Composting</h3>
+          <p>
+            Online communities teach compost methods and reduce kitchen waste in
+            urban homes.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Sustainable Living Tips & Tricks</span>
+          <h3>Plastic-Free Product Packaging</h3>
+          <p>
+            Choose refill stations and paper-based packs for items like soap,
+            shampoo, and toothpaste.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Interviews with Sustainable Experts</span>
+          <h3>Pokhara Green Startup Stories</h3>
+          <p>
+            Local founders explain how they produce bamboo-based daily products
+            with minimal plastic.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">News & Environmental Updates</span>
+          <h3>Nepal Waste Reduction Initiatives</h3>
+          <p>
+            City-level awareness programs are improving household segregation
+            and encouraging responsible buying.
+          </p>
+        </article>
+
+        <article class="card blog-topic">
+          <span class="badge">Community Stories & Successes</span>
+          <h3>Rooftop Harvest in Lakeside</h3>
+          <p>
+            A family from Pokhara reduced monthly vegetable costs by growing
+            spinach and tomatoes in vertical containers.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p class="footer-text">
+          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+          <br />Today: <span id="todayDate"></span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Cart overlay -->
+    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+    <!-- Cart panel -->
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer-header">
+        <h2>Cart</h2>
+        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-drawer-body">
+        <p>Items in your cart</p>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="drawerCartBody">
+            <tr>
+              <td colspan="2">Cart is empty.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+      </div>
+    </aside>
+
+    <!-- Main JS -->
+    <script src="../js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Page info -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UrbanSprout products page with local Nepali eco-friendly products."
+    />
+    <title>UrbanSprout Nepal | Products</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Products-only CSS -->
+    <style>
+      /* Price styles */
+      .old-price {
+        text-decoration: line-through;
+        color: #777;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top menu -->
+    <div class="navbar">
+      <div class="container nav-inner">
+        <a
+          href="../index.html"
+          style="text-align: center; color: white; text-decoration: none"
+          ><div class="brand">UrbanSprout Pokhara</div></a
+        >
+        <nav class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="products.html" class="active">Products</a>
+          <a href="blog.html">Blog</a>
+          <a href="research.html">Research</a>
+          <a href="about.html">About Us</a>
+        </nav>
+        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">☰</button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="container section">
+      <h1>Shop for Earth-Friendly Products from Pokhara</h1>
+      <p>
+        All products use little plastic, are good for the earth, and are made by
+        small local businesses in Pokhara.
+      </p>
+
+      <!-- Product filter -->
+      <div class="form-group" style="max-width: 300px">
+        <label for="productFilter">Filter Products</label>
+        <select id="productFilter">
+          <option value="all">All</option>
+          <option value="gardening">Gardening Essentials</option>
+          <option value="containers">Containers & Planters</option>
+          <option value="tools">Tools & Supplies</option>
+        </select>
+      </div>
+
+      <!-- Product cards -->
+      <section class="grid product-grid">
+          <article class="card product-card" data-category="gardening">
+            <img src="../images/product-seedkit.png" alt="Vegetable seed kit" />
+            <h3>Vegetable Seed Kit</h3>
+            <p>
+              <span class="old-price">NPR 500</span> <strong>NPR 400</strong>
+            </p>
+            <p>
+              Kit with seeds for tomatoes, lettuce, and peppers for balcony
+              gardening.
+            </p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Vegetable Seed Kit"
+              data-price="400"
+            >
+              Add to Cart
+            </button>
+          </article>
+
+          <article class="card product-card" data-category="containers">
+            <img
+              src="../images/product-planter.png"
+              alt="Ceramic planter pot"
+            />
+            <h3>Ceramic Planter Pot</h3>
+            <p>
+              <span class="old-price">NPR 800</span> <strong>NPR 650</strong>
+            </p>
+            <p>Small ceramic pot perfect for growing herbs on your balcony.</p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Ceramic Planter Pot"
+              data-price="650"
+            >
+              Add to Cart
+            </button>
+          </article>
+
+          <article class="card product-card" data-category="tools">
+            <img
+              src="../images/product-tools.png"
+              alt="Gardening tools set"
+            />
+            <h3>Gardening Tools Set</h3>
+            <p>
+              <span class="old-price">NPR 1200</span> <strong>NPR 1000</strong>
+            </p>
+            <p>Set includes trowel, pruners, and gloves for easy gardening.</p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Gardening Tools Set"
+              data-price="1000"
+            >
+              Add to Cart
+            </button>
+          </article>
+
+          <article class="card product-card" data-category="gardening">
+            <img src="../images/product-compost.png" alt="Compost bin" />
+            <h3>Compost Bin</h3>
+            <p>
+              <span class="old-price">NPR 1500</span> <strong>NPR 1300</strong>
+            </p>
+            <p>Bin to turn kitchen waste into compost for your plants.</p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Compost Bin"
+              data-price="1300"
+            >
+              Add to Cart
+            </button>
+          </article>
+
+          <article class="card product-card" data-category="containers">
+            <img src="../images/product-wateringcan.png" alt="Watering can" />
+            <h3>Watering Can</h3>
+            <p>
+              <span class="old-price">NPR 600</span> <strong>NPR 500</strong>
+            </p>
+            <p>Plastic-free metal watering can for gentle plant care.</p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Watering Can"
+              data-price="500"
+            >
+              Add to Cart
+            </button>
+          </article>
+
+          <article class="card product-card" data-category="containers">
+            <img src="../images/product-herbbox.png" alt="Herb planter box" />
+            <h3>Herb Planter Box</h3>
+            <p>
+              <span class="old-price">NPR 1000</span> <strong>NPR 850</strong>
+            </p>
+            <p>Wooden box for growing fresh herbs in small spaces.</p>
+            <button
+              class="btn add-to-cart-btn"
+              data-name="Herb Planter Box"
+              data-price="850"
+            >
+              Add to Cart
+            </button>
+          </article>
+        </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p class="footer-text">
+          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+          <br />Today: <span id="todayDate"></span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Product popup -->
+    <div id="productModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalProductName">
+        <button id="productModalClose" class="modal-close" aria-label="Close product details">×</button>
+        <img id="modalProductImage" src="" alt="Product image" />
+        <h2 id="modalProductName"></h2>
+        <p id="modalProductPrice"></p>
+        <p id="modalProductDescription"></p>
+      </div>
+    </div>
+    <!-- Cart overlay and panel -->
+    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer-header">
+        <h2>Cart</h2>
+        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-drawer-body">
+        <p>Items in your cart</p>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="drawerCartBody">
+            <tr>
+              <td colspan="2">Cart is empty.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+      </div>
+    </aside>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

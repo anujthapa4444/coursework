@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Page info -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Research and design comparison for UrbanSprout website."
+    />
+    <title>UrbanSprout Nepal | Research</title>
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Research-only CSS -->
+    <style>
+      /* Research blocks */
+      .research-note {
+        background: #f8fff0;
+        border: 1px dashed #8bc34a;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .research-card {
+        background: #ffffff;
+        border: 1px solid #d7e3cf;
+        border-radius: 0.7rem;
+        padding: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        margin-top: 0.8rem;
+      }
+
+      .shot-box {
+        border: 1px solid #dce7d2;
+        border-radius: 0.5rem;
+        padding: 0.7rem;
+        background: #fbfef8;
+      }
+
+      .shot-box img {
+        width: 100%;
+        border-radius: 0.4rem;
+        border: 1px solid #cfdcc4;
+        min-height: 150px;
+        object-fit: cover;
+      }
+
+      .meta-line {
+        font-size: 0.92rem;
+        color: #2f4a30;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top menu -->
+    <div class="navbar">
+      <div class="container nav-inner">
+        <a
+          href="../index.html"
+          style="text-align: center; color: white; text-decoration: none"
+          ><div class="brand">UrbanSprout Pokhara</div></a
+        >
+        <nav class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="blog.html">Blog</a>
+          <a href="research.html" class="active">Research</a>
+          <a href="about.html">About Us</a>
+        </nav>
+        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">☰</button>
+      </div>
+    </div>
+
+    <main class="container section">
+      <!-- Research intro -->
+      <h1>Research and Design Comparison</h1>
+      <p>
+        We researched navigation, page bodies, product layouts, and cart
+        interactions from real websites. For the home page, we used a reference
+        nav bar style; for every page we adapted body layout ideas to keep the
+        site consistent and easy to use.
+      </p>
+      <p>
+        The research covers each page part: the header/nav bar, the main body
+        section, and the product page cart section, showing where each design
+        idea came from.
+      </p>
+
+      <section class="section">
+        <h2>Research by Page Component</h2>
+        <article class="research-card">
+          <h3>Navigation Bar</h3>
+          <p>
+            We researched clear top navigation from site homepages like REI and
+            other retail/eco sites. We chose a sticky navbar with a bold brand,
+            simple links, and a visible active state for easy page switching.
+          </p>
+        </article>
+        <article class="research-card">
+          <h3>Home Page Body</h3>
+          <p>
+            The home page body is based on hero sections and summary card layouts
+            from similar lifestyle and gardening sites. It uses a large headline,
+            short supporting text, and quick links to the products, blog, and
+            research pages for a friendly first impression.
+          </p>
+        </article>
+        <article class="research-card">
+          <h3>Products Page and Cart Section</h3>
+          <p>
+            The products page layout borrows from e-commerce pages such as Amazon
+            with product cards, price labels, and a category filter. The cart
+            drawer is modeled after side cart patterns seen on shopping sites,
+            with a clear item list, totals, and a simple checkout-style action.
+          </p>
+        </article>
+      </section>
+
+      <!-- Short note -->
+      <div class="research-note">
+        <p>
+          This part shows comparisons for each page, with pictures, similarity
+          scores, and check times.
+        </p>
+      </div>
+
+      <section class="section">
+        <h2>Page-by-Page Research</h2>
+
+        <article class="research-card">
+          <h3>1) Home Page vs REI Home</h3>
+          <p class="meta-line">
+            Reference link:
+            <a href="https://www.rei.com/" target="_blank" rel="noopener"
+              >https://www.rei.com/</a
+            >
+            <br />
+            Checked on: 28 Mar 2026, 10:00 AM (NPT)
+          </p>
+          <div class="compare-grid">
+            <div class="shot-box">
+              <h4>Our Home Page Screenshot</h4>
+              <img
+                src="../images/home-our.png"
+                alt="UrbanSprout home page screenshot"
+              />
+            </div>
+            <div class="shot-box">
+              <h4>Researched Page Screenshot</h4>
+              <img
+                src="../images/home-ref-rei.png"
+                alt="REI home page screenshot"
+              />
+            </div>
+          </div>
+          <p>
+            <strong>Similarity:</strong> 70% (eco and outdoor focus with big
+            hero images)
+          </p>
+          <p>
+            <strong>Difference:</strong> REI has many products and sells
+            worldwide; our site focuses on local Pokhara plants and community.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <h3>2) Products Page vs Amazon</h3>
+          <p class="meta-line">
+            Reference link:
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener"
+              >https://www.amazon.com/</a
+            >
+            <br />
+            Checked on: 5 Apr 2026, 2:15 PM (NPT)
+          </p>
+          <div class="compare-grid">
+            <div class="shot-box">
+              <h4>Our Page Screenshot</h4>
+              <img
+                src="../images/products-our.png"
+                alt="UrbanSprout products page screenshot"
+              />
+            </div>
+            <div class="shot-box">
+              <h4>Researched Page Screenshot</h4>
+              <img
+                src="../images/products-ref-amazon.png"
+                alt="Amazon products page screenshot"
+              />
+            </div>
+          </div>
+          <p>
+            <strong>Similarity:</strong> 75% (product boxes, prices, category
+            lists)
+          </p>
+          <p>
+            <strong>Difference:</strong> Amazon is a big global shop with tons
+            of products; our site has a simple list of eco-friendly plants.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <h3>3) Blog Page vs Urban Jungle Bloggers</h3>
+          <p class="meta-line">
+            Reference link:
+            <a
+              href="https://www.urbanjunglebloggers.com/"
+              target="_blank"
+              rel="noopener"
+              >https://www.urbanjunglebloggers.com/</a
+            >
+            <br />
+            Checked on: 30 Mar 2026, 11:30 AM (NPT)
+          </p>
+          <div class="compare-grid">
+            <div class="shot-box">
+              <h4>Our Page Screenshot</h4>
+              <img
+                src="../images/blog-our.png"
+                alt="UrbanSprout blog page screenshot"
+              />
+            </div>
+            <div class="shot-box">
+              <h4>Researched Page Screenshot</h4>
+              <img
+                src="../images/blog-ref-urban-jungle-bloggers.png"
+                alt="Urban Jungle Bloggers page screenshot"
+              />
+            </div>
+          </div>
+          <p>
+            <strong>Similarity:</strong> 70% (plant info and learning layout)
+          </p>
+          <p>
+            <strong>Difference:</strong> Urban Jungle Bloggers has lots of
+            content and community; our blog mixes tech and eco-topics for
+            school.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <h3>4) About Page vs Plant Addicts About</h3>
+          <p class="meta-line">
+            Reference link:
+            <a
+              href="https://www.plantaddicts.com/about-us"
+              target="_blank"
+              rel="noopener"
+              >https://www.plantaddicts.com/about-us</a
+            >
+            <br />
+            Checked on: 12 Apr 2026, 9:45 AM (NPT)
+          </p>
+          <div class="compare-grid">
+            <div class="shot-box">
+              <h4>Our Page Screenshot</h4>
+              <img
+                src="../images/about-our.png"
+                alt="UrbanSprout about page screenshot"
+              />
+            </div>
+            <div class="shot-box">
+              <h4>Researched Page Screenshot</h4>
+              <img
+                src="../images/about-ref-plantaddicts.png"
+                alt="Plant Addicts page screenshot"
+              />
+            </div>
+          </div>
+          <p>
+            <strong>Similarity:</strong> 68% (company/team story and customer
+            help)
+          </p>
+          <p>
+            <strong>Difference:</strong> Plant Addicts is a family nursery with
+            good plants and happy buyers; our site is a student project with
+            team info and feedback form.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <h3>5) Research Page vs Yelp Directory Style</h3>
+          <p class="meta-line">
+            Reference link:
+            <a href="https://www.yelp.com/" target="_blank" rel="noopener"
+              >https://www.yelp.com/</a
+            >
+            <br />
+            Checked on: 18 Apr 2026, 3:00 PM (NPT)
+          </p>
+          <div class="compare-grid">
+            <div class="shot-box">
+              <h4>Our Page Screenshot</h4>
+              <img
+                src="../images/research-our.png"
+                alt="UrbanSprout research page screenshot"
+              />
+            </div>
+            <div class="shot-box">
+              <h4>Researched Page Screenshot</h4>
+              <img
+                src="../images/research-ref-yelp.png"
+                alt="Yelp page screenshot"
+              />
+            </div>
+          </div>
+          <p>
+            <strong>Similarity:</strong> 65% (info first with comparison notes)
+          </p>
+          <p>
+            <strong>Difference:</strong> Yelp is a review site for businesses;
+            our research is a fixed list of five comparisons.
+          </p>
+        </article>
+      </section>
+
+      <section class="section">
+        <!-- Summary table -->
+        <h2>Research Summary Table</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>UrbanSprout Page</th>
+              <th>Website Reference</th>
+              <th>Similarity</th>
+              <th>Similarities</th>
+              <th>Differences</th>
+              <th>Checked Date/Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Home</td>
+              <td>https://www.rei.com/</td>
+              <td>70%</td>
+              <td>eco and outdoor focus with big images</td>
+              <td>
+                REI has many products worldwide; our site focuses on local
+                plants and community.
+              </td>
+              <td>28 Mar 2026, 10:00 AM (NPT)</td>
+            </tr>
+            <tr>
+              <td>Products</td>
+              <td>https://www.amazon.com/</td>
+              <td>75%</td>
+              <td>product boxes, prices, category lists</td>
+              <td>
+                Amazon is a big global shop with tons of products; our site has
+                a simple list of eco-friendly plants.
+              </td>
+              <td>5 Apr 2026, 2:15 PM (NPT)</td>
+            </tr>
+            <tr>
+              <td>Blog</td>
+              <td>https://www.urbanjunglebloggers.com/</td>
+              <td>70%</td>
+              <td>plant info and learning layout</td>
+              <td>
+                Urban Jungle Bloggers has lots of content and community; our
+                blog mixes tech and eco-topics for school.
+              </td>
+              <td>30 Mar 2026, 11:30 AM (NPT)</td>
+            </tr>
+            <tr>
+              <td>About</td>
+              <td>https://www.plantaddicts.com/about-us</td>
+              <td>68%</td>
+              <td>company/team story and customer help</td>
+              <td>
+                Plant Addicts is a family nursery with good plants and happy
+                buyers; our site is a student project with team info and
+                feedback form.
+              </td>
+              <td>12 Apr 2026, 9:45 AM (NPT)</td>
+            </tr>
+            <tr>
+              <td>Research</td>
+              <td>https://www.yelp.com/</td>
+              <td>65%</td>
+              <td>info first with comparison notes</td>
+              <td>
+                Yelp is a review site for businesses; our research is a fixed
+                list of five comparisons.
+              </td>
+              <td>18 Apr 2026, 3:00 PM (NPT)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p class="footer-text">
+          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+          <br />Today: <span id="todayDate"></span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Cart overlay and panel -->
+    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer-header">
+        <h2>Cart</h2>
+        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-drawer-body">
+        <p>Items in your cart</p>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="drawerCartBody">
+            <tr>
+              <td colspan="2">Cart is empty.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+      </div>
+    </aside>
+
+    <!-- Main JS -->
+    <script src="../js/script.js"></script>
+  </body>
+</html>
