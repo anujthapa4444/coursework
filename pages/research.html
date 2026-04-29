@@ -77,58 +77,6 @@
     </div>
 
     <main class="container section">
-      <!-- Research intro -->
-      <h1>Research and Design Comparison</h1>
-      <p>
-        We researched navigation, page bodies, product layouts, and cart
-        interactions from real websites. For the home page, we used a reference
-        nav bar style; for every page we adapted body layout ideas to keep the
-        site consistent and easy to use.
-      </p>
-      <p>
-        The research covers each page part: the header/nav bar, the main body
-        section, and the product page cart section, showing where each design
-        idea came from.
-      </p>
-
-      <section class="section">
-        <h2>Research by Page Component</h2>
-        <article class="research-card">
-          <h3>Navigation Bar</h3>
-          <p>
-            We researched clear top navigation from site homepages like REI and
-            other retail/eco sites. We chose a sticky navbar with a bold brand,
-            simple links, and a visible active state for easy page switching.
-          </p>
-        </article>
-        <article class="research-card">
-          <h3>Home Page Body</h3>
-          <p>
-            The home page body is based on hero sections and summary card layouts
-            from similar lifestyle and gardening sites. It uses a large headline,
-            short supporting text, and quick links to the products, blog, and
-            research pages for a friendly first impression.
-          </p>
-        </article>
-        <article class="research-card">
-          <h3>Products Page and Cart Section</h3>
-          <p>
-            The products page layout borrows from e-commerce pages such as Amazon
-            with product cards, price labels, and a category filter. The cart
-            drawer is modeled after side cart patterns seen on shopping sites,
-            with a clear item list, totals, and a simple checkout-style action.
-          </p>
-        </article>
-      </section>
-
-      <!-- Short note -->
-      <div class="research-note">
-        <p>
-          This part shows comparisons for each page, with pictures, similarity
-          scores, and check times.
-        </p>
-      </div>
-
       <section class="section">
         <h2>Page-by-Page Research</h2>
 
@@ -319,7 +267,7 @@
         </article>
       </section>
 
-      <section class="section">
+      <section class="section" id="researchSummarySection" hidden>
         <!-- Summary table -->
         <h2>Research Summary Table</h2>
         <table>
@@ -393,6 +341,20 @@
           </tbody>
         </table>
       </section>
+
+      <section class="section">
+        <button id="researchReadMoreBtn" class="btn" type="button">
+          Read More
+        </button>
+        <button
+          id="researchShowLessBtn"
+          class="btn btn-secondary"
+          type="button"
+          style="display: none; margin-left: 0.5rem"
+        >
+          Show Less
+        </button>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -434,7 +396,7 @@
       </div>
     </aside>
 
-    <!-- Main JS -->
+    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
     <script src="../js/script.js"></script>
   </body>
 </html>

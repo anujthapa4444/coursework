@@ -19,6 +19,39 @@
         padding-left: 0.8rem;
         cursor: pointer;
       }
+
+      /* Conclusion design */
+      .blog-conclusion {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        border-radius: 14px;
+        border: 1px solid #d7ecd8;
+        background: linear-gradient(145deg, #f5fbf4, #ecf7ec);
+        box-shadow: 0 10px 25px rgba(24, 91, 41, 0.08);
+      }
+
+      .blog-conclusion h2 {
+        margin-top: 0.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .conclusion-badge {
+        display: inline-block;
+        font-size: 0.82rem;
+        color: #1f6f3a;
+        background: #def5e0;
+        padding: 0.3rem 0.65rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .conclusion-line {
+        margin-top: 1rem;
+        padding-top: 0.8rem;
+        border-top: 1px dashed #b9d9bc;
+        color: #235f3f;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -131,7 +164,8 @@
       </section>
 
       <!-- Blog conclusion -->
-      <section class="section card">
+      <section class="section blog-conclusion">
+        <span class="conclusion-badge">Project Wrap-Up</span>
         <h2>Conclusion</h2>
         <p>
           This UrbanSprout Nepal project shows how a simple website can support
@@ -147,6 +181,7 @@
           responsible choices, and use practical tools to build a cleaner,
           healthier, and more sustainable community.
         </p>
+        <p class="conclusion-line">Small steps today, greener Pokhara tomorrow.</p>
       </section>
     </main>
 
@@ -203,7 +238,7 @@
       </div>
     </aside>
 
-    <!-- Main JS -->
+    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
     <script src="../js/script.js"></script>
   </body>
 </html>
