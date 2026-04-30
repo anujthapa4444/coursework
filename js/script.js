@@ -764,9 +764,9 @@ function startHeroBackgroundSlider() {
   // List of images to slide through
   var heroImages = [
     "../images/hero-bg.png",
-    "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1600&q=80"
+    "../images/hero-bg-2.png",
+    "../images/hero-bg-3.png",
+    "../images/hero-bg-4.png  "
   ];
 
   var currentIndex = 0; // Start with first image
