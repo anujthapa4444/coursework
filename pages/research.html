@@ -1,440 +1,425 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Page info -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Research and design comparison for UrbanSprout website."
-    />
-    <title>UrbanSprout Nepal | Research</title>
-    <link rel="stylesheet" href="../css/style.css" />
 
-    <!-- Research-only CSS -->
-    <style>
-      /* Research blocks */
-      .research-note {
-        background: #f8fff0;
-        border: 1px dashed #8bc34a;
-        padding: 1rem;
-        border-radius: 0.5rem;
-      }
+<head>
+  <!-- Page info -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Research and design comparison for UrbanSprout website." />
+  <title>UrbanSprout Nepal | Research</title>
+  <link rel="stylesheet" href="../css/style.css" />
 
-      .research-card {
-        background: #ffffff;
-        border: 1px solid #d7e3cf;
-        border-radius: 0.7rem;
-        padding: 1rem;
-        margin-top: 1.2rem;
-      }
+  <!-- Research-only CSS -->
+  <style>
+    /* Research blocks */
+    .research-note {
+      background: #f8fff0;
+      border: 1px dashed #8bc34a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
 
-      .compare-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1rem;
-        margin-top: 0.8rem;
-      }
+    .research-card {
+      background: #ffffff;
+      border: 1px solid #d7e3cf;
+      border-radius: 0.7rem;
+      padding: 1rem;
+      margin-top: 1.2rem;
+    }
 
-      .shot-box {
-        border: 1px solid #dce7d2;
-        border-radius: 0.5rem;
-        padding: 0.7rem;
-        background: #fbfef8;
-      }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
 
-      .shot-box img {
-        width: 100%;
-        border-radius: 0.4rem;
-        border: 1px solid #cfdcc4;
-        min-height: 150px;
-        object-fit: cover;
-      }
+    .shot-box {
+      border: 1px solid #dce7d2;
+      border-radius: 0.5rem;
+      padding: 0.7rem;
+      background: #fbfef8;
+    }
 
-      .meta-line {
-        font-size: 0.92rem;
-        color: #2f4a30;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top menu -->
-    <div class="navbar">
-      <div class="container nav-inner">
-        <a
-          href="../index.html"
-          style="text-align: center; color: white; text-decoration: none"
-          ><div class="brand">UrbanSprout Pokhara</div></a>
-        <nav class="nav-links">
-          <a href="../index.html">Home</a>
-          <a href="products.html">Products</a>
-          <a href="blog.html">Blog</a>
-          <a href="research.html" class="active">Research</a>
-          <a href="about.html">About Us</a>
-        </nav>
-        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cart-icon"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        </button>
-      </div>
+    .shot-box img {
+      width: 100%;
+      border-radius: 0.4rem;
+      border: 1px solid #cfdcc4;
+      min-height: 150px;
+      object-fit: cover;
+    }
+
+    .meta-line {
+      font-size: 0.92rem;
+      color: #2f4a30;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top menu -->
+  <div class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" style="text-align: center; color: white; text-decoration: none">
+        <div class="brand">UrbanSprout Pokhara</div>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="blog.html">Blog</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="about.html">About Us</a>
+      </nav>
+      <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </button>
     </div>
+  </div>
 
-    <main class="container section">
-      <section class="section">
-        <h2>Page-by-Page Research</h2>
+  <main class="container section">
+    <section class="section">
+      <h2>Page-by-Page Research</h2>
 
-        <article class="research-card">
-          <h3>1) Home Page vs Daraz Home</h3>
-          <p class="meta-line">
-            Reference link:
-            <a href="https://www.daraz.com.np/" target="_blank" rel="noopener"
-              >https://www.daraz.com.np/</a
-            >
-            <br />
-            Checked on: 30 Apr 2026, 8:15 AM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Home Page Screenshot</h4>
-              <img
-                src="../images/home-our.png"
-                alt="UrbanSprout home page screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/home-ref-daraz.png"
-                alt="Daraz home page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 85% (ecommerce layout, category menus, flash sales, search bar on top)
-          </p>
-          <p>
-            <strong>Difference:</strong> Daraz is a multi-vendor platform with thousands of categories; our site focuses specifically on gardening and is much simpler for beginners.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <h3>2) Products Page vs Amazon</h3>
-          <p class="meta-line">
-            Reference link:
-            <a href="https://www.amazon.com/" target="_blank" rel="noopener"
-              >https://www.amazon.com/</a
-            >
-            <br />
-            Checked on: 5 Apr 2026, 2:15 PM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Page Screenshot</h4>
-              <img
-                src="../images/products-our.png"
-                alt="UrbanSprout products page screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/products-ref-amazon.png"
-                alt="Amazon products page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 75% (product boxes, prices, category
-            lists)
-          </p>
-          <p>
-            <strong>Difference:</strong> Amazon is a big global shop with tons
-            of products; our site has a simple list of eco-friendly plants.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <h3>3) Blog Page vs Urban Jungle Bloggers</h3>
-          <p class="meta-line">
-            Reference link:
-            <a
-              href="https://www.urbanjunglebloggers.com/"
-              target="_blank"
-              rel="noopener"
-              >https://www.urbanjunglebloggers.com/</a
-            >
-            <br />
-            Checked on: 30 Mar 2026, 11:30 AM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Page Screenshot</h4>
-              <img
-                src="../images/blog-our.png"
-                alt="UrbanSprout blog page screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/blog-ref-urban-jungle-bloggers.png"
-                alt="Urban Jungle Bloggers page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 70% (plant info and learning layout)
-          </p>
-          <p>
-            <strong>Difference:</strong> Urban Jungle Bloggers has lots of
-            content and community; our blog mixes tech and eco-topics for
-            school.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <h3>4) About Page vs Black Tech Contact Page</h3>
-          <p class="meta-line">
-            Reference link:
-            <a
-              href="https://www.blacktech.com.np/contact"
-              target="_blank"
-              rel="noopener"
-              >https://www.blacktech.com.np/contact</a
-            >
-            <br />
-            Checked on: 30 Apr 2026, 8:30 AM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Page Screenshot</h4>
-              <img
-                src="../images/about-our.png"
-                alt="UrbanSprout about page screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/about-ref-blacktech.png"
-                alt="Black Tech contact page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 60% (Both serve as a point of communication, featuring a form for users to send messages or feedback).
-          </p>
-          <p>
-            <strong>Difference:</strong> Black Tech focuses professionally on business inquiries, providing direct contact details (email, phone, address). Our site combines team member introductions with a basic feedback form tailored for a student project.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <h3>5) Research Page vs Yelp Directory Style</h3>
-          <p class="meta-line">
-            Reference link:
-            <a href="https://www.yelp.com/" target="_blank" rel="noopener"
-              >https://www.yelp.com/</a
-            >
-            <br />
-            Checked on: 18 Apr 2026, 3:00 PM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Page Screenshot</h4>
-              <img
-                src="../images/research-our.png"
-                alt="UrbanSprout research page screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/research-ref-yelp.png"
-                alt="Yelp page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 65% (info first with comparison notes)
-          </p>
-          <p>
-            <strong>Difference:</strong> Yelp is a review site for businesses;
-            our research is a fixed list of five comparisons.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <h3>6) Site-wide Features: Nav Bar & Hero Section vs W3Schools</h3>
-          <p class="meta-line">
-            Reference link:
-            <a href="https://www.w3schools.com/" target="_blank" rel="noopener"
-              >https://www.w3schools.com/</a
-            >
-            <br />
-            Checked on: 28 Apr 2026, 10:00 AM (NPT)
-          </p>
-          <div class="compare-grid">
-            <div class="shot-box">
-              <h4>Our Page Screenshot</h4>
-              <img
-                src="../images/nav-bg_slider-our.png"
-                alt="Our nav bar and hero section screenshot"
-              />
-            </div>
-            <div class="shot-box">
-              <h4>Researched Page Screenshot</h4>
-              <img
-                src="../images/nav-bg_slider-w3.png"
-                alt="W3Schools page screenshot"
-              />
-            </div>
-          </div>
-          <p>
-            <strong>Similarity:</strong> 80% (Both employ a top-anchored, horizontal navigation bar for persistent access, paired directly with a high-contrast hero banner below it).
-          </p>
-          <p>
-            <strong>Difference:</strong> W3Schools' design features a complex dual-layer navigation with dropdowns and search inputs. Our design is a single-layer, flat navigation with only primary text links to preserve a minimalist aesthetic.
-          </p>
-        </article>
-      </section>
-
-      <section class="section" id="researchSummarySection" hidden>
-        <!-- Summary table -->
-        <h2>Research Summary Table</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>UrbanSprout Page</th>
-              <th>Website Reference</th>
-              <th>Similarity</th>
-              <th>Similarities</th>
-              <th>Differences</th>
-              <th>Checked Date/Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Home</td>
-              <td>https://www.daraz.com.np/</td>
-              <td>85%</td>
-              <td>ecommerce layout, category menus, flash sales, search bar on top</td>
-              <td>
-                Daraz is a multi-vendor platform with thousands of categories; our site focuses specifically on gardening and is much simpler for beginners.
-              </td>
-              <td>30 Apr 2026, 8:15 AM (NPT)</td>
-            </tr>
-            <tr>
-              <td>Products</td>
-              <td>https://www.amazon.com/</td>
-              <td>75%</td>
-              <td>product boxes, prices, category lists</td>
-              <td>
-                Amazon is a big global shop with tons of products; our site has
-                a simple list of eco-friendly plants.
-              </td>
-              <td>5 Apr 2026, 2:15 PM (NPT)</td>
-            </tr>
-            <tr>
-              <td>Blog</td>
-              <td>https://www.urbanjunglebloggers.com/</td>
-              <td>70%</td>
-              <td>plant info and learning layout</td>
-              <td>
-                Urban Jungle Bloggers has lots of content and community; our
-                blog mixes tech and eco-topics for school.
-              </td>
-              <td>30 Mar 2026, 11:30 AM (NPT)</td>
-            </tr>
-            <tr>
-              <td>About</td>
-              <td>https://www.blacktech.com.np/contact</td>
-              <td>60%</td>
-              <td>form for users to send messages or feedback</td>
-              <td>
-                Black Tech focuses on business inquiries with professional contact details; our site combines team info and a student feedback form.
-              </td>
-              <td>30 Apr 2026, 8:30 AM (NPT)</td>
-            </tr>
-            <tr>
-              <td>Research</td>
-              <td>https://www.yelp.com/</td>
-              <td>65%</td>
-              <td>info first with comparison notes</td>
-              <td>
-                Yelp is a review site for businesses; our research is a fixed
-                list of five comparisons.
-              </td>
-              <td>18 Apr 2026, 3:00 PM (NPT)</td>
-            </tr>
-            <tr>
-              <td>Nav Bar & Hero (Site-wide)</td>
-              <td>https://www.w3schools.com/</td>
-              <td>80%</td>
-              <td>Top menu for easy clicking, big welcome area</td>
-              <td>
-                W3Schools has search, login, and lots of links. Our nav bar is simple for a plant store and has a cart.
-              </td>
-              <td>28 Apr 2026, 10:00 AM (NPT)</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="section">
-        <button id="researchReadMoreBtn" class="btn" type="button">
-          Read More
-        </button>
-        <button
-          id="researchShowLessBtn"
-          class="btn btn-secondary"
-          type="button"
-          style="display: none; margin-left: 0.5rem"
-        >
-          Show Less
-        </button>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p class="footer-text">
-          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
-          <br />Today: <span id="todayDate"></span>
+      <article class="research-card">
+        <h3>1) Home Page vs Daraz Home</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.daraz.com.np/" target="_blank" rel="noopener">https://www.daraz.com.np/</a>
+          <br />
+          Checked on: 30 Apr 2026, 8:15 AM (NPT)
         </p>
-      </div>
-    </footer>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Home Page Screenshot</h4>
+            <img src="../images/home-our.png" alt="UrbanSprout home page screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/home-ref-daraz.png" alt="Daraz home page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 85% (ecommerce layout, category menus, flash sales, search bar on top)
+        </p>
+        <p>
+          <strong>Difference:</strong> Daraz is a multi-vendor platform with thousands of categories; our site focuses
+          specifically on gardening and is much simpler for beginners.
+        </p>
+      </article>
 
-    <!-- Cart overlay and panel -->
-    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
-    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
-      <div class="cart-drawer-header">
-        <h2>Cart</h2>
-        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
-      </div>
-      <div class="cart-drawer-body">
-        <p>Items in your cart</p>
-        <table class="cart-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Qty</th>
-            </tr>
-          </thead>
-          <tbody id="drawerCartBody">
-            <tr>
-              <td colspan="2">Cart is empty.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
-        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
-        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
-        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
-      </div>
-    </aside>
+      <article class="research-card">
+        <h3>2) Products Page vs Amazon</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.amazon.com/" target="_blank" rel="noopener">https://www.amazon.com/</a>
+          <br />
+          Checked on: 5 Apr 2026, 2:15 PM (NPT)
+        </p>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Page Screenshot</h4>
+            <img src="../images/products-our.png" alt="UrbanSprout products page screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/products-ref-amazon.png" alt="Amazon products page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 75% (product boxes, prices, category
+          lists)
+        </p>
+        <p>
+          <strong>Difference:</strong> Amazon is a big global shop with tons
+          of products; our site has a simple list of eco-friendly plants.
+        </p>
+      </article>
 
-    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
-    <script src="../js/script.js"></script>
-  </body>
+      <article class="research-card">
+        <h3>3) Blog Page vs Urban Jungle Bloggers</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.urbanjunglebloggers.com/" target="_blank"
+            rel="noopener">https://www.urbanjunglebloggers.com/</a>
+          <br />
+          Checked on: 30 Mar 2026, 11:30 AM (NPT)
+        </p>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Page Screenshot</h4>
+            <img src="../images/blog-our.png" alt="UrbanSprout blog page screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/blog-ref-urban-jungle-bloggers.png" alt="Urban Jungle Bloggers page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 70% (plant info and learning layout)
+        </p>
+        <p>
+          <strong>Difference:</strong> Urban Jungle Bloggers has lots of
+          content and community; our blog mixes tech and eco-topics for
+          school.
+        </p>
+      </article>
+
+      <article class="research-card">
+        <h3>4) About Page vs Black Tech Contact Page</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.blacktech.com.np/contact" target="_blank"
+            rel="noopener">https://www.blacktech.com.np/contact</a>
+          <br />
+          Checked on: 30 Apr 2026, 8:30 AM (NPT)
+        </p>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Page Screenshot</h4>
+            <img src="../images/about-our.png" alt="UrbanSprout about page screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/about-ref-blacktech.png" alt="Black Tech contact page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 60% (Both serve as a point of communication, featuring a form for users to send
+          messages or feedback).
+        </p>
+        <p>
+          <strong>Difference:</strong> Black Tech focuses professionally on business inquiries, providing direct contact
+          details (email, phone, address). Our site combines team member introductions with a basic feedback form
+          tailored for a student project.
+        </p>
+      </article>
+
+      <article class="research-card">
+        <h3>5) Research Page vs Yelp Directory Style</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.yelp.com/" target="_blank" rel="noopener">https://www.yelp.com/</a>
+          <br />
+          Checked on: 18 Apr 2026, 3:00 PM (NPT)
+        </p>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Page Screenshot</h4>
+            <img src="../images/research-our.png" alt="UrbanSprout research page screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/research-ref-yelp.png" alt="Yelp page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 65% (info first with comparison notes)
+        </p>
+        <p>
+          <strong>Difference:</strong> Yelp is a review site for businesses;
+          our research is a fixed list of five comparisons.
+        </p>
+      </article>
+
+      <article class="research-card">
+        <h3>6) Site-wide Features: Nav Bar & Hero Section vs W3Schools</h3>
+        <p class="meta-line">
+          Reference link:
+          <a href="https://www.w3schools.com/" target="_blank" rel="noopener">https://www.w3schools.com/</a>
+          <br />
+          Checked on: 28 Apr 2026, 10:00 AM (NPT)
+        </p>
+        <div class="compare-grid">
+          <div class="shot-box">
+            <h4>Our Page Screenshot</h4>
+            <img src="../images/nav-bg_slider-our.png" alt="Our nav bar and hero section screenshot" />
+          </div>
+          <div class="shot-box">
+            <h4>Researched Page Screenshot</h4>
+            <img src="../images/nav-bg_slider-w3.png" alt="W3Schools page screenshot" />
+          </div>
+        </div>
+        <p>
+          <strong>Similarity:</strong> 80% (Both employ a top-anchored, horizontal navigation bar for persistent access,
+          paired directly with a high-contrast hero banner below it).
+        </p>
+        <p>
+          <strong>Difference:</strong> W3Schools' design features a complex dual-layer navigation with dropdowns and
+          search inputs. Our design is a single-layer, flat navigation with only primary text links to preserve a
+          minimalist aesthetic.
+        </p>
+      </article>
+    </section>
+
+    <section class="section" id="researchSummarySection" hidden>
+      <!-- Summary table -->
+      <h2>Research Summary Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>UrbanSprout Page</th>
+            <th>Website Reference</th>
+            <th>Similarity</th>
+            <th>Similarities</th>
+            <th>Differences</th>
+            <th>Checked Date/Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Home</td>
+            <td>https://www.daraz.com.np/</td>
+            <td>85%</td>
+            <td>ecommerce layout, category menus, flash sales, search bar on top</td>
+            <td>
+              Daraz is a multi-vendor platform with thousands of categories; our site focuses specifically on gardening
+              and is much simpler for beginners.
+            </td>
+            <td>30 Apr 2026, 8:15 AM (NPT)</td>
+          </tr>
+          <tr>
+            <td>Products</td>
+            <td>https://www.amazon.com/</td>
+            <td>75%</td>
+            <td>product boxes, prices, category lists</td>
+            <td>
+              Amazon is a big global shop with tons of products; our site has
+              a simple list of eco-friendly plants.
+            </td>
+            <td>5 Apr 2026, 2:15 PM (NPT)</td>
+          </tr>
+          <tr>
+            <td>Blog</td>
+            <td>https://www.urbanjunglebloggers.com/</td>
+            <td>70%</td>
+            <td>plant info and learning layout</td>
+            <td>
+              Urban Jungle Bloggers has lots of content and community; our
+              blog mixes tech and eco-topics for school.
+            </td>
+            <td>30 Mar 2026, 11:30 AM (NPT)</td>
+          </tr>
+          <tr>
+            <td>About</td>
+            <td>https://www.blacktech.com.np/contact</td>
+            <td>60%</td>
+            <td>form for users to send messages or feedback</td>
+            <td>
+              Black Tech focuses on business inquiries with professional contact details; our site combines team info
+              and a student feedback form.
+            </td>
+            <td>30 Apr 2026, 8:30 AM (NPT)</td>
+          </tr>
+          <tr>
+            <td>Research</td>
+            <td>https://www.yelp.com/</td>
+            <td>65%</td>
+            <td>info first with comparison notes</td>
+            <td>
+              Yelp is a review site for businesses; our research is a fixed
+              list of five comparisons.
+            </td>
+            <td>18 Apr 2026, 3:00 PM (NPT)</td>
+          </tr>
+          <tr>
+            <td>Nav Bar & Hero (Site-wide)</td>
+            <td>https://www.w3schools.com/</td>
+            <td>80%</td>
+            <td>Top menu for easy clicking, big welcome area</td>
+            <td>
+              W3Schools has search, login, and lots of links. Our nav bar is simple for a plant store and has a cart.
+            </td>
+            <td>28 Apr 2026, 10:00 AM (NPT)</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- References Section -->
+      <section class="section blog-conclusion">
+        <span class="conclusion-badge">References</span>
+        <h2>Bibliography</h2>
+        <div class="csl-bib-body">
+          <div class="csl-entry">Balsamiq Studios. (2025). <i>Balsamiq Wireframes Documentation</i>. <a href="https://balsamiq.com/learn/" target="_blank">https://balsamiq.com/learn/</a></div>
+          <div class="csl-entry">Bhavare, O. (2025). <i>Mastering HTML5 Semantic Tags Like a Pro (Not Just a Coder)</i>. Medium. <a href="https://medium.com/@omkar.bhavare/mastering-html5-semantic-tags-like-a-pro-not-just-a-coder-2c0a7e92c7e8" target="_blank">https://medium.com/@omkar.bhavare/mastering-html5-semantic-tags-like-a-pro-not-just-a-coder-2c0a7e92c7e8</a></div>
+          <div class="csl-entry">Emmet. (2025). <i>Emmet Documentation</i>. <a href="https://docs.emmet.io/" target="_blank">https://docs.emmet.io/</a></div>
+          <div class="csl-entry">Justdial. (2025). <i>Learn HTML Meta Tags: Boost SEO and Web Page Optimisation—JD Collections</i>. <a href="https://www.justdial.com/jd-collections/learn-html-meta-tags-boost-seo-and-web-page-optimisation" target="_blank">https://www.justdial.com/jd-collections/learn-html-meta-tags-boost-seo-and-web-page-optimisation</a></div>
+          <div class="csl-entry">Mahir21. (2025). <i>Form-validation: Creating a Form Validation Project Using Html, Css and Javascript</i>. <a href="https://github.com/mahir21/form-validation" target="_blank">https://github.com/mahir21/form-validation</a></div>
+          <div class="csl-entry">McCown, F. (2019). <i>Intro to HTML5</i>. <a href="https://harding.edu/fmccown/html5/" target="_blank">https://harding.edu/fmccown/html5/</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025a). <i>CSS: Cascading Style Sheets</i>. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025b). <i>How CSS Is Structured</i>. <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025c). <i>Inline Styles in HTML</i>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025d). <i>Structuring Documents</i>. <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Structuring_documents" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/HTML/Structuring_documents</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025e). <i>The Style Attribute (Inline Styles)</i>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style</a></div>
+          <div class="csl-entry">MDN Web Docs. (2025f). <i>Using CSS Custom Properties (Variables)</i>. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties</a></div>
+          <div class="csl-entry">Microsoft. (2025). <i>Visual Studio Code Documentation</i>. <a href="https://code.visualstudio.com/docs" target="_blank">https://code.visualstudio.com/docs</a></div>
+          <div class="csl-entry">Mozilla Corporation. (2025). <i>How CSS Works</i>. <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works</a></div>
+          <div class="csl-entry">Ritwick Dey. (2025). <i>Live Server</i>. Visual Studio Code Marketplace. <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer</a></div>
+          <div class="csl-entry">Sobhi, A. (2024). <i>Optimize Your Website: A Brief Overview of Key HTML Meta Tags</i>. LinkedIn. <a href="https://www.linkedin.com/pulse/optimize-your-website-brief-overview-key-html-meta-tags-sobhi-gy6jf/" target="_blank">https://www.linkedin.com/pulse/optimize-your-website-brief-overview-key-html-meta-tags-sobhi-gy6jf/</a></div>
+          <div class="csl-entry">W3C. (2021). <i>CSS Snapshot 2021</i>. <a href="https://www.w3.org/TR/CSS/" target="_blank">https://www.w3.org/TR/CSS/</a></div>
+          <div class="csl-entry">W3Schools. (2025a). <i>CSS External Stylesheet</i>. <a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">https://www.w3schools.com/css/css_howto.asp</a></div>
+          <div class="csl-entry">W3Schools. (2025b). <i>CSS Inline Styles</i>. <a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">https://www.w3schools.com/css/css_howto.asp</a></div>
+          <div class="csl-entry">W3Schools. (2025c). <i>CSS Internal Stylesheet</i>. <a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">https://www.w3schools.com/css/css_howto.asp</a></div>
+          <div class="csl-entry">Web Hypertext Application Technology Working Group (WHATWG). (2025). <i>HTML: The Living Standard—4.10 Forms</i>. <a href="https://html.spec.whatwg.org/multipage/forms.html" target="_blank">https://html.spec.whatwg.org/multipage/forms.html</a></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="section">
+      <button id="researchReadMoreBtn" class="btn" type="button">
+        Read More
+      </button>
+      <button id="researchShowLessBtn" class="btn btn-secondary" type="button"
+        style="display: none; margin-left: 0.5rem">
+        Show Less
+      </button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">
+        UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+        <br />Today: <span id="todayDate"></span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Cart overlay and panel -->
+  <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2>Cart</h2>
+      <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body">
+      <p>Items in your cart</p>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody id="drawerCartBody">
+          <tr>
+            <td colspan="2">Cart is empty.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+      <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+      <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+      <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+    </div>
+  </aside>
+
+  <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
+  <script src="../js/script.js"></script>
+</body>
+
 </html>

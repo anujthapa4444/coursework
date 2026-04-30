@@ -1,246 +1,266 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Page info -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="UrbanSprout blog on technology and sustainable urban gardening in Nepal."
-    />
-    <title>UrbanSprout Nepal | Blog</title>
-    <link rel="stylesheet" href="../css/style.css" />
 
-    <!-- Blog-only CSS -->
-    <style>
-      /* Blog tags */
-      .blog-topic {
-        border-left: 4px solid #66bb6a;
-        padding-left: 0.8rem;
-        cursor: pointer;
-      }
+<head>
+  <!-- Page info -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UrbanSprout blog on technology and sustainable urban gardening in Nepal." />
+  <title>UrbanSprout Nepal | Blog</title>
+  <link rel="stylesheet" href="../css/style.css" />
 
-      /* Conclusion design */
-      .blog-conclusion {
-        margin-top: 2rem;
-        padding: 1.5rem;
-        border-radius: 14px;
-        border: 1px solid #d7ecd8;
-        background: linear-gradient(145deg, #f5fbf4, #ecf7ec);
-        box-shadow: 0 10px 25px rgba(24, 91, 41, 0.08);
-      }
+  <!-- Blog-only CSS -->
+  <style>
+    /* Blog tags */
+    .blog-topic {
+      border-left: 4px solid #66bb6a;
+      padding-left: 0.8rem;
+      cursor: pointer;
+    }
 
-      .blog-conclusion h2 {
-        margin-top: 0.4rem;
-        margin-bottom: 0.8rem;
-      }
+    /* Conclusion design */
+    .blog-conclusion {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 14px;
+      border: 1px solid #d7ecd8;
+      background: linear-gradient(145deg, #f5fbf4, #ecf7ec);
+      box-shadow: 0 10px 25px rgba(24, 91, 41, 0.08);
+    }
 
-      .conclusion-badge {
-        display: inline-block;
-        font-size: 0.82rem;
-        color: #1f6f3a;
-        background: #def5e0;
-        padding: 0.3rem 0.65rem;
-        border-radius: 999px;
-        font-weight: 600;
-      }
+    .blog-conclusion h2 {
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
 
-      .conclusion-line {
-        margin-top: 1rem;
-        padding-top: 0.8rem;
-        border-top: 1px dashed #b9d9bc;
-        color: #235f3f;
-        font-weight: 600;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top menu -->
-    <div class="navbar">
-      <div class="container nav-inner">
-        <a
-          href="../index.html"
-          style="text-align: center; color: white; text-decoration: none"
-          ><div class="brand">UrbanSprout Pokhara</div></a
-        >
-        <nav class="nav-links">
-          <a href="../index.html">Home</a>
-          <a href="products.html">Products</a>
-          <a href="blog.html" class="active">Blog</a>
-          <a href="research.html">Research</a>
-          <a href="about.html">About Us</a>
-        </nav>
-        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cart-icon"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        </button>
-      </div>
+    .conclusion-badge {
+      display: inline-block;
+      font-size: 0.82rem;
+      color: #1f6f3a;
+      background: #def5e0;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .conclusion-line {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed #b9d9bc;
+      color: #235f3f;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top menu -->
+  <div class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" style="text-align: center; color: white; text-decoration: none">
+        <div class="brand">UrbanSprout Pokhara</div>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="research.html">Research</a>
+        <a href="about.html">About Us</a>
+      </nav>
+      <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </button>
     </div>
+  </div>
 
-    <main class="container section">
-      <!-- Blog intro -->
-      <h1>Blog: How Technology Helps Growing Food in Cities</h1>
+  <main class="container section">
+    <!-- Blog intro -->
+    <h1>Blog: How Technology Helps Growing Food in Cities</h1>
+    <p>
+      These beginner-friendly articles explain how simple technology can help
+      you grow plants and live greener in Pokhara.
+    </p>
+
+    <!-- Blog cards -->
+    <section class="grid">
+      <article class="card blog-topic"
+        data-detail="Start with 2 to 3 easy plants. Use a simple mobile reminder for watering. Keep pots where sunlight comes for at least 4 hours."
+        data-tip="Beginner tip: Start small. One balcony corner is enough.">
+        <img src="../images/home-bg-2.png" alt="Balcony plants in pots" />
+        <span class="badge">About Technology in Urban Gardening</span>
+        <h3>Smart Ways to Grow Plants in Small Homes</h3>
+        <p>
+          Use your phone alarm and basic tools to care for balcony plants,
+          even on busy days.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="A small drip kit or bottle drip can reduce water waste. Water in the morning to keep plants fresh for the full day."
+        data-tip="Beginner tip: Water slowly near roots, not on leaves.">
+        <img src="../images/blog-post1.png"" alt=" Watering plants carefully" />
+        <span class="badge">Positive Impact of Technology</span>
+        <h3>Saving Water with Smart Tools</h3>
+        <p>
+          Low-cost timers and slow watering tools help save water and keep
+          herbs healthy.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="Buying many new devices creates e-waste. Choose tools that last longer, can be repaired, and can be shared with family or neighbors."
+        data-tip="Beginner tip: Buy one good tool instead of many cheap tools.">
+        <img src="../images/blog-post2.png" alt="Electronic waste recycling bins" />
+        <span class="badge">Negative Impact of Technology</span>
+        <h3>E-waste and Overconsumption</h3>
+        <p>
+          Buying too many new devices creates e-waste. Reuse and repair when
+          possible.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="Many local groups share compost guides online. You can learn what waste is useful, how often to mix, and when compost is ready for pots."
+        data-tip="Beginner tip: Start composting with dry leaves and kitchen peels.">
+        <img src="../images/blog-post3.png" alt="Compost material in a garden" />
+        <span class="badge">Sustainable Gardening Boost</span>
+        <h3>How Tech Supports Composting</h3>
+        <p>
+          Online groups teach simple composting methods for city homes.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="Choose refill options and paper packs when possible. Small daily choices can reduce plastic at home over time."
+        data-tip="Beginner tip: Carry one reusable bag for all gardening items.">
+        <img src="../images/blog-post4.png" alt="Reusable shopping bags and jars" />
+        <span class="badge">Sustainable Living Tips & Tricks</span>
+        <h3>Plastic-Free Product Packaging</h3>
+        <p>
+          Prefer refill shops and paper packaging for daily products.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="Local founders in Pokhara are using bamboo and reusable packaging. Their stories show that eco businesses can grow step by step."
+        data-tip="Beginner tip: Support one local eco brand each month.">
+        <img src="../images/blog-post5.png" alt="Small eco-friendly startup workspace" />
+        <span class="badge">Interviews with Sustainable Experts</span>
+        <h3>Pokhara Green Startup Stories</h3>
+        <p>
+          Local founders share how they build eco-friendly products with less
+          plastic.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="Community programs now teach waste separation and smart buying. This helps homes and neighborhoods stay cleaner."
+        data-tip="Beginner tip: Keep two bins at home: dry and wet waste.">
+        <img src="../images/blog-post6.png" alt="Separated waste bins for home use" />
+        <span class="badge">News & Environmental Updates</span>
+        <h3>Nepal Waste Reduction Initiatives</h3>
+        <p>
+          New city programs help families separate waste and shop more
+          responsibly.
+        </p>
+      </article>
+
+      <article class="card blog-topic"
+        data-detail="A Lakeside family grew spinach and tomatoes in vertical planters. They spent less on vegetables and ate fresher food."
+        data-tip="Beginner tip: Pick fast-growing greens for your first harvest.">
+        <img src="../images/home-bg-3.png" alt="Rooftop vegetable garden" />
+        <span class="badge">Community Stories & Successes</span>
+        <h3>Rooftop Harvest in Lakeside</h3>
+        <p>
+          A Pokhara family reduced vegetable costs by growing spinach and
+          tomatoes on their rooftop.
+        </p>
+      </article>
+    </section>
+
+    <!-- Blog conclusion -->
+    <section class="section blog-conclusion">
+      <span class="conclusion-badge">Project Wrap-Up</span>
+      <h2>Conclusion</h2>
       <p>
-        These beginner-friendly articles explain how simple technology can help
-        you grow plants and live greener in Pokhara.
+        This UrbanSprout Nepal project shows how a simple website can support
+        sustainable urban living in Pokhara. The home page introduces the
+        idea, the products page helps users explore eco-friendly items, and
+        the blog page shares easy tips about technology, gardening, and daily
+        green habits for beginners.
       </p>
+      <p>
+        The research and about pages complete the project by explaining design
+        decisions, team contributions, and learning outcomes from this course
+        work. Overall, the project encourages users to start small, make
+        responsible choices, and use practical tools to build a cleaner,
+        healthier, and more sustainable community.
+      </p>
+      <p class="conclusion-line">Small steps today, greener Pokhara tomorrow.</p>
+    </section>
 
-      <!-- Blog cards -->
-      <section class="grid">
-        <article class="card blog-topic" data-detail="Start with 2 to 3 easy plants. Use a simple mobile reminder for watering. Keep pots where sunlight comes for at least 4 hours." data-tip="Beginner tip: Start small. One balcony corner is enough.">
-          <img src="../images/home-bg-2.png" alt="Balcony plants in pots" />
-          <span class="badge">About Technology in Urban Gardening</span>
-          <h3>Smart Ways to Grow Plants in Small Homes</h3>
-          <p>
-            Use your phone alarm and basic tools to care for balcony plants,
-            even on busy days.
-          </p>
-        </article>
+  </main>
 
-        <article class="card blog-topic" data-detail="A small drip kit or bottle drip can reduce water waste. Water in the morning to keep plants fresh for the full day." data-tip="Beginner tip: Water slowly near roots, not on leaves.">
-          <img src="../images/blog-post1.png"" alt="Watering plants carefully" />
-          <span class="badge">Positive Impact of Technology</span>
-          <h3>Saving Water with Smart Tools</h3>
-          <p>
-            Low-cost timers and slow watering tools help save water and keep
-            herbs healthy.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="Buying many new devices creates e-waste. Choose tools that last longer, can be repaired, and can be shared with family or neighbors." data-tip="Beginner tip: Buy one good tool instead of many cheap tools.">
-          <img src="../images/blog-post2.png" alt="Electronic waste recycling bins" />
-          <span class="badge">Negative Impact of Technology</span>
-          <h3>E-waste and Overconsumption</h3>
-          <p>
-            Buying too many new devices creates e-waste. Reuse and repair when
-            possible.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="Many local groups share compost guides online. You can learn what waste is useful, how often to mix, and when compost is ready for pots." data-tip="Beginner tip: Start composting with dry leaves and kitchen peels.">
-          <img src="../images/blog-post3.png" alt="Compost material in a garden" />
-          <span class="badge">Sustainable Gardening Boost</span>
-          <h3>How Tech Supports Composting</h3>
-          <p>
-            Online groups teach simple composting methods for city homes.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="Choose refill options and paper packs when possible. Small daily choices can reduce plastic at home over time." data-tip="Beginner tip: Carry one reusable bag for all gardening items.">
-          <img src="../images/blog-post4.png" alt="Reusable shopping bags and jars" />
-          <span class="badge">Sustainable Living Tips & Tricks</span>
-          <h3>Plastic-Free Product Packaging</h3>
-          <p>
-            Prefer refill shops and paper packaging for daily products.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="Local founders in Pokhara are using bamboo and reusable packaging. Their stories show that eco businesses can grow step by step." data-tip="Beginner tip: Support one local eco brand each month.">
-          <img src="../images/blog-post5.png" alt="Small eco-friendly startup workspace" />
-          <span class="badge">Interviews with Sustainable Experts</span>
-          <h3>Pokhara Green Startup Stories</h3>
-          <p>
-            Local founders share how they build eco-friendly products with less
-            plastic.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="Community programs now teach waste separation and smart buying. This helps homes and neighborhoods stay cleaner." data-tip="Beginner tip: Keep two bins at home: dry and wet waste.">
-          <img src="../images/blog-post6.png" alt="Separated waste bins for home use" />
-          <span class="badge">News & Environmental Updates</span>
-          <h3>Nepal Waste Reduction Initiatives</h3>
-          <p>
-            New city programs help families separate waste and shop more
-            responsibly.
-          </p>
-        </article>
-
-        <article class="card blog-topic" data-detail="A Lakeside family grew spinach and tomatoes in vertical planters. They spent less on vegetables and ate fresher food." data-tip="Beginner tip: Pick fast-growing greens for your first harvest.">
-          <img src="../images/home-bg-3.png" alt="Rooftop vegetable garden" />
-          <span class="badge">Community Stories & Successes</span>
-          <h3>Rooftop Harvest in Lakeside</h3>
-          <p>
-            A Pokhara family reduced vegetable costs by growing spinach and
-            tomatoes on their rooftop.
-          </p>
-        </article>
-      </section>
-
-      <!-- Blog conclusion -->
-      <section class="section blog-conclusion">
-        <span class="conclusion-badge">Project Wrap-Up</span>
-        <h2>Conclusion</h2>
-        <p>
-          This UrbanSprout Nepal project shows how a simple website can support
-          sustainable urban living in Pokhara. The home page introduces the
-          idea, the products page helps users explore eco-friendly items, and
-          the blog page shares easy tips about technology, gardening, and daily
-          green habits for beginners.
-        </p>
-        <p>
-          The research and about pages complete the project by explaining design
-          decisions, team contributions, and learning outcomes from this course
-          work. Overall, the project encourages users to start small, make
-          responsible choices, and use practical tools to build a cleaner,
-          healthier, and more sustainable community.
-        </p>
-        <p class="conclusion-line">Small steps today, greener Pokhara tomorrow.</p>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p class="footer-text">
-          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
-          <br />Today: <span id="todayDate"></span>
-        </p>
-      </div>
-    </footer>
-
-    <!-- Blog popup -->
-    <div id="blogModal" class="modal hidden" aria-hidden="true">
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalBlogTitle">
-        <button id="blogModalClose" class="modal-close" aria-label="Close blog details">×</button>
-        <img id="modalBlogImage" src="" alt="Blog topic image" />
-        <p id="modalBlogTopic" class="badge"></p>
-        <h2 id="modalBlogTitle"></h2>
-        <p id="modalBlogSummary"></p>
-        <p id="modalBlogDetail"></p>
-        <p><strong id="modalBlogTip"></strong></p>
-      </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">
+        UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+        <br />Today: <span id="todayDate"></span>
+      </p>
     </div>
+  </footer>
 
-    <!-- Cart overlay -->
-    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
-    <!-- Cart panel -->
-    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
-      <div class="cart-drawer-header">
-        <h2>Cart</h2>
-        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
-      </div>
-      <div class="cart-drawer-body">
-        <p>Items in your cart</p>
-        <table class="cart-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Qty</th>
-            </tr>
-          </thead>
-          <tbody id="drawerCartBody">
-            <tr>
-              <td colspan="2">Cart is empty.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
-        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
-        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
-        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
-      </div>
-    </aside>
+  <!-- Blog popup -->
+  <div id="blogModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalBlogTitle">
+      <button id="blogModalClose" class="modal-close" aria-label="Close blog details">×</button>
+      <img id="modalBlogImage" src="" alt="Blog topic image" />
+      <p id="modalBlogTopic" class="badge"></p>
+      <h2 id="modalBlogTitle"></h2>
+      <p id="modalBlogSummary"></p>
+      <p id="modalBlogDetail"></p>
+      <p><strong id="modalBlogTip"></strong></p>
+    </div>
+  </div>
 
-    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
-    <script src="../js/script.js"></script>
-  </body>
+  <!-- Cart overlay -->
+  <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+  <!-- Cart panel -->
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2>Cart</h2>
+      <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body">
+      <p>Items in your cart</p>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody id="drawerCartBody">
+          <tr>
+            <td colspan="2">Cart is empty.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+      <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+      <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+      <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+    </div>
+  </aside>
+
+  <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
+  <script src="../js/script.js"></script>
+</body>
+
 </html>
