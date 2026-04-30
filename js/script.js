@@ -763,10 +763,10 @@ function startHeroBackgroundSlider() {
 
   // List of images to slide through
   var heroImages = [
-    "../images/hero-bg.png",
-    "../images/hero-bg-2.png",
-    "../images/hero-bg-3.png",
-    "../images/hero-bg-4.png  "
+    "images/hero-bg.png",
+    "images/home-bg-2.png",
+    "images/home-bg-3.png",
+    "images/home-bg-4.png"
   ];
 
   var currentIndex = 0; // Start with first image
