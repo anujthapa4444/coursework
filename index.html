@@ -1,158 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Page info -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="UrbanSprout Nepal - balcony and kitchen gardening platform with local eco-friendly gardening products."
-    />
-    <title>UrbanSprout Nepal | Home</title>
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+<head>
+  <!-- Page info -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="UrbanSprout Nepal - balcony and kitchen gardening platform with local eco-friendly gardening products." />
+  <title>UrbanSprout Nepal | Home</title>
 
-    <!-- Home-only CSS -->
-    <style>
-      /* Home highlight board */
-      .home-highlight {
-        border-left: 6px solid #2e7d32;
-        background: #f2fbe9;
-        padding: 1rem;
-        border-radius: 0.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top menu -->
-    <div class="navbar">
-      <div class="container nav-inner">
-        <a href="index.html" style="text-align: center; color: white ; text-decoration: none;"><div class="brand">UrbanSprout Pokhara</div></a>
-        <nav class="nav-links">
-          <a href="index.html" class="active">Home</a>
-          <a href="pages/products.html">Products</a>
-          <a href="pages/blog.html">Blog</a>
-          <a href="pages/research.html">Research</a>
-          <a href="pages/about.html">About Us</a>
-        </nav>
-        <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">☰</button>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Home-only CSS -->
+  <style>
+    /* Home highlight board */
+    .home-highlight {
+      border-left: 6px solid #2e7d32;
+      background: #f2fbe9;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top menu -->
+  <div class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" style="text-align: center; color: white ; text-decoration: none;">
+        <div class="brand">UrbanSprout Pokhara</div>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/products.html">Products</a>
+        <a href="pages/blog.html">Blog</a>
+        <a href="pages/research.html">Research</a>
+        <a href="pages/about.html">About Us</a>
+      </nav>
+      <button id="openCartBtn" class="cart-toggle" aria-label="Open cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cart-icon"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero area -->
+  <header class="hero">
+    <div class="hero-overlay">
+      <div class="container">
+        <h1>Grow Your Own Food in Pokhara: UrbanSprout Nepal</h1>
+        <p>
+          A student project for CC4057NP focused on sustainable urban living,
+          balcony and kitchen gardening, and local eco-friendly gardening products in Pokhara valley.
+        </p>
+        <p>
+          We researched navigation and page layout from reference websites. The home page nav bar is inspired by a
+          tested homepage design, and each page body follows researched layout ideas for better usability.
+        </p>
+        <!-- Welcome button -->
+        <button id="welcomeBtn" class="btn" style="margin-top: 0.5rem; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2)">
+          Welcome Message
+        </button>
       </div>
     </div>
+  </header>
 
-    <!-- Hero area -->
-    <header class="hero">
-      <div class="hero-overlay">
-        <div class="container">
-          <h1>Grow Your Own Food in Pokhara: UrbanSprout Nepal</h1>
-          <p>
-            A student project for CC4057NP focused on sustainable urban living,
-            balcony and kitchen gardening, and local eco-friendly gardening products in Pokhara valley.
-          </p>
-          <p>
-            We researched navigation and page layout from reference websites. The home page nav bar is inspired by a tested homepage design, and each page body follows researched layout ideas for better usability.
-          </p>
-          <!-- Welcome button -->
-          <button
-            id="welcomeBtn"
-            class="btn"
-            style="margin-top: 0.5rem; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2)"
-          >
-            Welcome Message
-          </button>
-        </div>
+  <!-- Main content -->
+  <main class="container section">
+    <!-- Short intro -->
+    <div class="home-highlight">
+      <h2>What is UrbanSprout?</h2>
+      <p>
+        UrbanSprout helps urban residents in Nepal, especially Pokhara, to
+        start balcony and kitchen gardening while choosing plastic-free and
+        locally made gardening products from Lakeside and nearby local markets.
+      </p>
+    </div>
+
+    <!-- Main page links -->
+    <section class="section">
+      <h2>What You Will Find Here</h2>
+      <div class="grid">
+        <a href="pages/products.html" style="text-decoration: none; color: inherit;">
+          <article class="card">
+            <h3>Gardening Product Store</h3>
+            <p>
+              Buy local gardening products like seed kits, planters, and tools for balcony gardening.
+            </p>
+          </article>
+        </a>
+        <a href="pages/blog.html" style="text-decoration: none; color: inherit;">
+          <article class="card">
+            <h3>Technology & Sustainability Blog</h3>
+            <p>
+              Learn how technology impacts urban gardening, both positively and
+              negatively, with practical ideas for Nepali households.
+            </p>
+          </article>
+        </a>
+        <a href="pages/research.html" style="text-decoration: none; color: inherit;">
+          <article class="card">
+            <h3>Research Comparison</h3>
+            <p>
+              Compare our website design and usability with 5 different
+              websites and explain improvements.
+            </p>
+          </article>
+        </a>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <!-- Main content -->
-    <main class="container section">
-      <!-- Short intro -->
-      <div class="home-highlight">
-        <h2>What is UrbanSprout?</h2>
-        <p>
-          UrbanSprout helps urban residents in Nepal, especially Pokhara, to
-          start balcony and kitchen gardening while choosing plastic-free and
-          locally made gardening products from Lakeside and nearby local markets.
-        </p>
-      </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">
+        UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
+        <br />Today: <span id="todayDate"></span>
+      </p>
+    </div>
+  </footer>
 
-      <!-- Main page links -->
-      <section class="section">
-        <h2>What You Will Find Here</h2>
-        <div class="grid">
-          <a href="pages/products.html" style="text-decoration: none; color: inherit;">
-            <article class="card">
-              <h3>Gardening Product Store</h3>
-              <p>
-                Buy local gardening products like seed kits, planters, and tools for balcony gardening.
-              </p>
-            </article>
-          </a>
-          <a href="pages/blog.html" style="text-decoration: none; color: inherit;">
-            <article class="card">
-              <h3>Technology & Sustainability Blog</h3>
-              <p>
-                Learn how technology impacts urban gardening, both positively and
-                negatively, with practical ideas for Nepali households.
-              </p>
-            </article>
-          </a>
-          <a href="pages/research.html" style="text-decoration: none; color: inherit;">
-            <article class="card">
-              <h3>Research Comparison</h3>
-              <p>
-                Compare our website design and usability with 5 different
-                websites and explain improvements.
-              </p>
-            </article>
-          </a>
-        </div>
-      </section>
-    </main>
+  <!-- Cart overlay -->
+  <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
+  <!-- Cart panel -->
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2>Cart</h2>
+      <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body">
+      <p>Items in your cart</p>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody id="drawerCartBody">
+          <tr>
+            <td colspan="2">Cart is empty.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
+      <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
+      <!-- Clear cart -->
+      <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
+      <!-- Go shopping -->
+      <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
+    </div>
+  </aside>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p class="footer-text">
-          UrbanSprout Nepal | Informatics College Pokhara | Course: CC4057NP
-          <br />Today: <span id="todayDate"></span>
-        </p>
-      </div>
-    </footer>
+  <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
+  <script src="js/script.js"></script>
+</body>
 
-    <!-- Cart overlay -->
-    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop"></div>
-    <!-- Cart panel -->
-    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
-      <div class="cart-drawer-header">
-        <h2>Cart</h2>
-        <button id="closeCartDrawer" class="modal-close" aria-label="Close cart">×</button>
-      </div>
-      <div class="cart-drawer-body">
-        <p>Items in your cart</p>
-        <table class="cart-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Qty</th>
-            </tr>
-          </thead>
-          <tbody id="drawerCartBody">
-            <tr>
-              <td colspan="2">Cart is empty.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><strong>Total Items:</strong> <span id="drawerCartItems">0</span></p>
-        <p><strong>Total Price:</strong> <span id="drawerCartTotal">NPR 0</span></p>
-        <!-- Clear cart -->
-        <button class="btn" id="clearDrawerCartBtn">Clear Cart</button>
-        <!-- Go shopping -->
-        <button class="btn" id="shopNowBtn" style="display: none; margin-top: 1rem; width: 100%;">Shop Now</button>
-      </div>
-    </aside>
-
-    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
-    <script src="js/script.js"></script>
-  </body>
 </html>
