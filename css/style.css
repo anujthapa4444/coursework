@@ -17,7 +17,6 @@
 }
 
 body {
-  margin: 0;
   font-family: "Times New Roman", Times, serif;
   color: var(--text-dark);
   background: linear-gradient(180deg,
@@ -29,7 +28,7 @@ body {
 /* Shared page container. */
 .container {
   width: min(1100px, 92%);
-  margin: 0 auto;
+  margin: auto;
 }
 
 /* Top menu styles. */
@@ -118,7 +117,7 @@ body {
 }
 
 .cart-drawer-body p {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
 }
 
 .cart-drawer .modal-close {
@@ -403,8 +402,6 @@ footer {
 }
 
 .csl-entry:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
   border-bottom: none;
 }
 
