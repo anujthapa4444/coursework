@@ -1,149 +1,115 @@
-// UrbanSprout main JavaScript.
-// Beginner note:
-// - This project uses ONE external JavaScript file (this file).
-// - We avoid inline/internal JavaScript inside HTML pages.
-// - Code is split into small sections so new learners can follow easily.
-// - We added simple comments to explain every section for beginners!
-
-// -----------------------------
-// 1) Small helper functions
-// -----------------------------
-
-// This function gets an HTML element by its ID name to save us from typing document.getElementById every time.
+// you have to type: document.getElementById("my-id"). That's so long!
+// Let's create a shortcut function called 'getById' to save our fingers.
 function getById(id) {
   return document.getElementById(id);
 }
 
-// This function shows a simple popup alert in the browser.
+// This function shows a simple alert box on your screen.
 function showPopup(message) {
-  window.alert(message);
+  window.alert(message); // window.alert is a built-in browser tool
 }
 
-// This function shows a nice alert bar on the top right when we add an item to the cart.
-function showAlertBar(message) {
-  var bar = getById("cartAlertBar");
-
-  // If the alert bar doesn't exist yet, we create it.
-  if (!bar) {
-    bar = document.createElement("div"); // Create a new div element
-    bar.id = "cartAlertBar"; // Give it an ID
-    
-    // Style the alert bar so it looks nice
-    bar.style.position = "fixed";
-    bar.style.top = "16px";
-    bar.style.right = "16px";
-    bar.style.background = "#1b5e20";
-    bar.style.color = "#fff";
-    bar.style.padding = "10px 14px";
-    bar.style.borderRadius = "8px";
-    bar.style.boxShadow = "0 10px 18px rgba(0,0,0,0.2)";
-    bar.style.zIndex = "2000"; // Make sure it stays on top of everything
-    bar.style.fontSize = "0.9rem";
-    
-    // Add it to the body of our webpage
-    document.body.appendChild(bar);
-  }
-
-  // Set the message inside the bar
-  bar.textContent = message;
-  // Make it visible
-  bar.style.display = "block";
-
-  // Hide the alert bar after 1.8 seconds (1800 milliseconds)
-  window.setTimeout(function () {
-    bar.style.display = "none";
-  }, 1800);
-}
-
-// Function to open a modal (a popup window on our page)
+// A "Modal" is just a fancy word for a popup window that overlays your page.
 function openModal(modalElement) {
-  if (!modalElement) return; // If there is no modal, do nothing
-  modalElement.classList.remove("hidden"); // Remove the 'hidden' class to show it
-  modalElement.setAttribute("aria-hidden", "false"); // Accessibility update
+  if (!modalElement) return; // If we couldn't find the modal, stop right here.
+
+  // We remove the "hidden" class from the modal's HTML, which makes it appear!
+  modalElement.classList.remove("hidden");
+  modalElement.setAttribute("aria-hidden", "false");
 }
 
-// Function to close a modal
 function closeModal(modalElement) {
-  if (!modalElement) return; // If there is no modal, do nothing
-  modalElement.classList.add("hidden"); // Add the 'hidden' class to hide it
-  modalElement.setAttribute("aria-hidden", "true"); // Accessibility update
+  if (!modalElement) return; // Stop if no modal is found
+
+  // We add the "hidden" class back, which makes it disappear!
+  modalElement.classList.add("hidden");
+  modalElement.setAttribute("aria-hidden", "true");
 }
 
-// -----------------------------
-// 2) Product modal
-// -----------------------------
 
-// Opens the details popup for a product when clicked
+// ==========================================
+//     SECTION 2: Product Modals (Popups)
+// ==========================================
+// These functions handle what happens when you click on products.
+
+// This opens the popup and fills it with the right product info
 function openProductModal(card) {
+  // It takes all the empty pieces of our popup window
   var modal = getById("productModal");
   var modalImage = getById("modalProductImage");
   var modalName = getById("modalProductName");
   var modalPrice = getById("modalProductPrice");
   var modalDescription = getById("modalProductDescription");
 
-  // Make sure all these elements exist on the page
+  // If any piece is missing, stop the code so it doesn't crash!
   if (!modal || !modalImage || !modalName || !modalPrice || !modalDescription) return;
 
-  // Get info from the clicked product card
+  // Now, grab the info from the specific card you just clicked on!
+  // querySelector looks inside the card for the first image, first h3, etc.
   var cardImage = card.querySelector("img");
   var cardTitle = card.querySelector("h3");
   var cardPrice = card.querySelector("strong");
   var paragraphs = card.querySelectorAll("p");
   var cardDescription = "";
 
-  // The description is usually the second paragraph
   if (paragraphs.length > 1) {
     cardDescription = paragraphs[1].textContent.trim();
   }
 
-  // Get the price as a number (remove the NPR text)
+  // We want just the number from the price, so we strip away letters like "NPR"
   var rawPrice = "";
   if (cardPrice) {
     rawPrice = cardPrice.textContent.replace(/[^0-9.]/g, "");
   }
 
-  // Update the modal with the product info
+  // Time to put the card's info INTO the popup window!
   modalImage.src = cardImage ? cardImage.src : "";
   modalImage.alt = cardImage ? cardImage.alt : "Product image";
   modalName.textContent = cardTitle ? cardTitle.textContent : "Product details";
   modalPrice.textContent = cardPrice ? "Price: " + cardPrice.textContent : "";
   modalDescription.textContent = cardDescription;
 
-  // Save product info in the modal so the "Add to Cart" button knows what to add
+  // We secretly save the product name and price into the popup itself.
+  // Why? So when you click "Add to Cart" inside the popup, it knows WHAT to add!
   modal.dataset.productName = cardTitle ? cardTitle.textContent : "";
   modal.dataset.productPrice = rawPrice;
 
-  // Finally, show the modal
+  // Show the popup!
   openModal(modal);
 }
 
-// Closes the product details popup
+// A simple shortcut to close the product popup
 function closeProductModal() {
   closeModal(getById("productModal"));
 }
 
-// Connects the click event to each product card so the popup opens
+// This function goes through all your products and makes them clickable
 function bindProductCardPopups() {
-  var cards = document.querySelectorAll(".product-card");
+  var cards = document.querySelectorAll(".product-card"); // Finds ALL product cards
   var modal = getById("productModal");
   var closeBtn = getById("productModalClose");
 
   if (!cards.length || !modal || !closeBtn) return;
 
-  // Go through every product card and add a click listener
+  // A "for loop" is like a machine that repeats an action.
+  // Here, it goes to every single card and adds an "event listener".
+  // An event listener waits for something to happen, like a "click".
   for (var i = 0; i < cards.length; i += 1) {
     cards[i].addEventListener("click", function (event) {
-      // If the user clicked the "Add to Cart" button, don't open the popup
+      // If you accidentally clicked the "Add to Cart" button ON the card,
+      // we don't want to open the popup. So we check for that and stop if true.
       var clickedInsideButton = event.target.closest(".btn");
       if (clickedInsideButton) return;
+
+      // 'this' refers to the specific card you clicked. 
       openProductModal(this);
     });
   }
 
-  // Close the popup when the close button is clicked
+  // Listen for a click on the little 'X' button to close the popup
   closeBtn.addEventListener("click", closeProductModal);
 
-  // Close the popup if the user clicks outside of the modal box
+  // If you click in the dark background outside the popup, close it too!
   modal.addEventListener("click", function (event) {
     if (event.target === modal) {
       closeProductModal();
@@ -151,30 +117,32 @@ function bindProductCardPopups() {
   });
 }
 
-// Connects the "Add to Cart" button inside the product popup
+// Connects the "Add to Cart" button that lives INSIDE the product popup
 function bindProductModalAddToCart() {
   var addBtn = getById("modalAddToCartBtn");
   var modal = getById("productModal");
 
   if (!addBtn || !modal) return;
 
+  // When you click it...
   addBtn.addEventListener("click", function () {
-    // Read the product details we saved earlier
+    // We read those secret details we saved earlier
     var productName = modal.dataset.productName || "";
     var productPrice = modal.dataset.productPrice || "";
 
     if (productName && productPrice) {
-      // Add the item to our simple cart
+      // Send them to our cart!
       addToCart(productName, productPrice);
     }
   });
 }
 
-// -----------------------------
-// 3) Blog modal
-// -----------------------------
 
-// Opens the details popup for a blog post
+// ==========================================
+// SECTION 3: Blog Modals (Popups)
+// ==========================================
+// This section is almost exactly like the product popups, but for blog posts!
+
 function openBlogModal(card) {
   var modal = getById("blogModal");
   var modalImage = getById("modalBlogImage");
@@ -184,20 +152,20 @@ function openBlogModal(card) {
   var modalDetail = getById("modalBlogDetail");
   var modalTip = getById("modalBlogTip");
 
-  // Stop if any part of the modal is missing
   if (!modal || !modalImage || !modalTopic || !modalTitle || !modalSummary || !modalDetail || !modalTip) {
     return;
   }
 
-  // Get info from the clicked blog card
+  // Grab info from the clicked blog card
   var cardImage = card.querySelector("img");
   var cardTopic = card.querySelector(".badge");
   var cardTitle = card.querySelector("h3");
   var cardSummary = card.querySelector("p");
+  // 'getAttribute' gets custom data we hid in the HTML, like 'data-detail'
   var cardDetail = card.getAttribute("data-detail") || "";
   var cardTip = card.getAttribute("data-tip") || "";
 
-  // Set the info in the modal
+  // Fill the popup with that info
   modalImage.src = cardImage ? cardImage.src : "";
   modalImage.alt = cardImage ? cardImage.alt : "Blog topic image";
   modalTopic.textContent = cardTopic ? cardTopic.textContent : "Blog";
@@ -206,16 +174,14 @@ function openBlogModal(card) {
   modalDetail.textContent = cardDetail;
   modalTip.textContent = cardTip;
 
-  // Show the blog modal
+  // Ta-da! Open it.
   openModal(modal);
 }
 
-// Closes the blog modal
 function closeBlogModal() {
   closeModal(getById("blogModal"));
 }
 
-// Connects the click event to each blog card
 function bindBlogCardPopups() {
   var cards = document.querySelectorAll(".blog-topic");
   var modal = getById("blogModal");
@@ -223,17 +189,15 @@ function bindBlogCardPopups() {
 
   if (!cards.length || !modal || !closeBtn) return;
 
-  // Add click listener to all blog cards
+  // Add click listeners to every blog card
   for (var i = 0; i < cards.length; i += 1) {
     cards[i].addEventListener("click", function () {
       openBlogModal(this);
     });
   }
 
-  // Close when X is clicked
   closeBtn.addEventListener("click", closeBlogModal);
 
-  // Close when clicking outside
   modal.addEventListener("click", function (event) {
     if (event.target === modal) {
       closeBlogModal();
@@ -241,10 +205,14 @@ function bindBlogCardPopups() {
   });
 }
 
-// Allows the user to close any open modal by pressing the 'Escape' key on keyboard
+// The "Escape Key" Trick
+// Most professional websites let you close popups by hitting 'Escape' on your keyboard.
+// Let's add that cool feature!
 function bindEscapeToCloseModals() {
+  // Listen to the whole document for any key being pressed
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
+      // If it's the Escape key, close ALL possible popups just to be safe
       closeProductModal();
       closeBlogModal();
       closeTeamMemberModal();
@@ -252,132 +220,141 @@ function bindEscapeToCloseModals() {
   });
 }
 
-// -----------------------------
-// 4) Cart data (Simplified for beginners)
-// -----------------------------
 
-// This simple array holds all the items you add to the cart.
-// Since we don't use localStorage, it resets if you refresh the page.
+// ==========================================
+// SECTION 4: Cart Data (The Brains of the Cart)
+// ==========================================
+
+// This is an "Array" (a list). We use it to hold all the items you buy.
+// Note: This is a "simple" cart. If you refresh the page, the browser forgets it.
+// To make it remember forever, you'd use something called "localStorage", but 
+// let's keep it simple for now!
 var mySimpleCart = [];
 
-// Gets the list of items currently in the cart
+// A quick way to see what's inside our cart
 function getCart() {
   return mySimpleCart;
 }
 
-// Saves the updated list of items to our cart variable
+// A way to save new changes to our cart
 function saveCart(cartArray) {
   mySimpleCart = cartArray;
 }
 
-// Empties the cart completely by saving an empty list
+// Emptying the cart is as simple as saving an empty list! [] means empty list.
 function clearCart() {
   saveCart([]);
 }
 
-// Finds if an item is already in the cart. 
-// Returns its position (index) if found, or -1 if not found.
+// The "Find Item" Detective
+// If you add a "Tomato Plant" to the cart, we need to check if you ALREADY 
+// have a Tomato Plant in there. If you do, we just add +1 to the quantity!
 function findItemIndex(cartArray, itemName) {
   for (var i = 0; i < cartArray.length; i += 1) {
     if (cartArray[i].name === itemName) {
-      return i; // Found it!
+      return i; // We found it! We return its position number (index)
     }
   }
-  return -1; // Not found
+  return -1; // -1 is a programmer's way of saying "I didn't find it anywhere"
 }
 
-// Calculates the total price and total quantity of everything in the cart
+// The "Math Calculator" for the Cart
 function calculateCartTotals(cartArray) {
-  var totals = { totalPrice: 0, totalQty: 0 }; // Start with 0
+  var totals = { totalPrice: 0, totalQty: 0 }; // Start with a zero
 
   for (var i = 0; i < cartArray.length; i += 1) {
-    // Total price = current price + (item price * item quantity)
-    totals.totalPrice = totals.totalPrice + cartArray[i].price * cartArray[i].qty;
-    // Total items = current items + item quantity
+    // To get the total price, we do: current total + (price of item * how many you bought)
+    totals.totalPrice = totals.totalPrice + (cartArray[i].price * cartArray[i].qty);
+
+    // To get the total count, we just add the quantities together
     totals.totalQty = totals.totalQty + cartArray[i].qty;
   }
 
   return totals;
 }
 
-// Adds a new product to the cart or increases its quantity if it's already there
+// The "Add It To Cart" Action
 function addToCart(name, price) {
-  var cart = getCart(); // Get current items
-  var index = findItemIndex(cart, name); // Check if we already have this product
+  var cart = getCart(); // Grab our current cart list
+  var index = findItemIndex(cart, name); // Detective checks if it's already there
 
   if (index === -1) {
-    // If not found, add a new item to our cart
+    // -1 means NOT found! So we push a brand new item into our list
     cart.push({
       name: name,
-      price: Number(price), // Convert price to a number just in case
-      qty: 1 // Start with quantity 1
+      price: Number(price), // 'Number()' makes sure it's treated as math, not text
+      qty: 1 // Start with 1 of these
     });
   } else {
-    // If it is found, just increase the quantity by 1
+    // We found it! Just increase the quantity by 1
     cart[index].qty = cart[index].qty + 1;
   }
 
-  saveCart(cart); // Update our cart
-  showAlertBar(name + " added to cart."); // Show success message
-  
-  // Update all the visual cart sections on the screen
+  saveCart(cart); // Save our changes
+  showAlertBar(name + " added to cart!"); // Show a cool toast notification
+
+  // Now we must update the screen so the user sees the changes!
   renderCartPage();
   renderCartSidebar();
   renderCartDrawer();
 }
 
-// Increases or decreases the quantity of a specific item
+// The "Change Quantity" Action (Used by the + and - buttons)
 function updateItemQuantity(itemName, change) {
   var cart = getCart();
   var index = findItemIndex(cart, itemName);
 
-  if (index === -1) return; // If item is not in cart, do nothing
+  if (index === -1) return; // If item isn't in the cart, ignore it
 
-  // Change the quantity (+1 or -1)
+  // Apply the change. 'change' could be +1 or -1
   cart[index].qty = cart[index].qty + change;
 
-  // If quantity drops to 0 or below, remove the item from the cart
+  // If you subtract too many and hit 0, we should delete the item completely!
   if (cart[index].qty <= 0) {
-    cart.splice(index, 1); // remove 1 item at 'index'
+    cart.splice(index, 1); // 'splice' is a magic word that removes an item from a list
   }
 
-  saveCart(cart); // Update our cart
-  
-  // Refresh the screen views
+  saveCart(cart); // Save changes
+
+  // Update the screen!
   renderCartPage();
   renderCartSidebar();
   renderCartDrawer();
 }
 
-// -----------------------------
-// 5) Cart UI rendering (Updating the screen)
-// -----------------------------
 
-// Updates the main Cart page (if we are on it)
+// ==========================================
+// SECTION 5: Cart UI (Updating what you see)
+// ==========================================
+// These functions take the data from our `mySimpleCart` list and draw it
+// on the webpage using HTML.
+
+// Draws the cart on the main Cart Page
 function renderCartPage() {
+  // Grab the table body and the spots where we show totals
   var body = getById("cartBody") || getById("estimateBody");
   var totalTarget = getById("cartTotal") || getById("estimateTotal");
   var countTarget = getById("cartItems") || getById("estimateItems");
 
-  if (!body || !totalTarget || !countTarget) return; // If elements don't exist, skip
+  if (!body || !totalTarget || !countTarget) return; // Skip if we aren't on the cart page
 
   var cart = getCart();
-  body.innerHTML = ""; // Clear out the old HTML
+  body.innerHTML = ""; // Clear out the old HTML drawing so we can redraw fresh
 
-  // If cart is empty, show a message
-  if (!cart.length) {
-    body.innerHTML = '<tr><td colspan="4">Cart is empty. <a href="products.html">Go Shopping</a></td></tr>';
+  // If cart is empty, show a sad empty message
+  if (cart.length === 0) { // cart.length tells us how many items are inside
+    body.innerHTML = '<tr><td colspan="4">Your cart is feeling a bit empty. <a href="products.html">Go Shopping!</a></td></tr>';
     totalTarget.textContent = "NPR 0";
     countTarget.textContent = "0";
     return;
   }
 
-  // Loop through cart items and add them as table rows
+  // Draw a row for every item in the cart!
   for (var i = 0; i < cart.length; i += 1) {
     var item = cart[i];
-    var lineTotal = item.price * item.qty; // Cost for this specific item
+    var lineTotal = item.price * item.qty; // Cost for just this group of items
 
-    // Create a row for the item
+    // We build a piece of HTML code and shove it inside the table body!
     body.innerHTML +=
       "<tr><td>" + item.name + "</td>" +
       "<td>NPR " + item.price + "</td>" +
@@ -385,13 +362,13 @@ function renderCartPage() {
       "<td>NPR " + lineTotal + "</td></tr>";
   }
 
-  // Calculate and update the overall totals
+  // Calculate overall totals and show them
   var totals = calculateCartTotals(cart);
   totalTarget.textContent = "NPR " + totals.totalPrice;
   countTarget.textContent = String(totals.totalQty);
 }
 
-// Updates the side cart (usually on a sidebar if it exists)
+// Draws the mini cart that sits on the sidebar
 function renderCartSidebar() {
   var body = getById("sidebarCartBody");
   var totalTarget = getById("sidebarCartTotal");
@@ -400,27 +377,25 @@ function renderCartSidebar() {
   if (!body || !totalTarget || !countTarget) return;
 
   var cart = getCart();
-  body.innerHTML = ""; // Clear existing rows
+  body.innerHTML = ""; // Clear it
 
-  if (!cart.length) {
+  if (cart.length === 0) {
     body.innerHTML = '<tr><td colspan="2">Cart is empty.</td></tr>';
     totalTarget.textContent = "NPR 0";
     countTarget.textContent = "0";
     return;
   }
 
-  // Add each item to the sidebar
   for (var i = 0; i < cart.length; i += 1) {
     body.innerHTML += "<tr><td>" + cart[i].name + "</td><td>" + cart[i].qty + "</td></tr>";
   }
 
-  // Update sidebar totals
   var totals = calculateCartTotals(cart);
   totalTarget.textContent = "NPR " + totals.totalPrice;
   countTarget.textContent = String(totals.totalQty);
 }
 
-// Updates the slide-out cart drawer (the one that pops from the side)
+// Draws the slide-out cart (the "Drawer" that pops from the side of the screen)
 function renderCartDrawer() {
   var body = getById("drawerCartBody");
   var totalTarget = getById("drawerCartTotal");
@@ -431,28 +406,28 @@ function renderCartDrawer() {
   if (!body || !totalTarget || !countTarget) return;
 
   var cart = getCart();
-  body.innerHTML = ""; // Clear old drawer contents
+  body.innerHTML = "";
 
-  if (!cart.length) {
-    body.innerHTML = '<tr><td colspan="2">Cart is empty.</td></tr>';
+  if (cart.length === 0) {
+    body.innerHTML = '<tr><td colspan="2">Your cart is empty. Let\'s fix that!</td></tr>';
     totalTarget.textContent = "NPR 0";
     countTarget.textContent = "0";
 
-    // Show "Shop Now" button if cart is empty
+    // Since it's empty, we show the "Shop Now" button and hide "Clear Cart"
     if (shopNowBtn) shopNowBtn.style.display = "block";
-    // Hide "Clear Cart" button if already empty
     if (clearBtn) clearBtn.style.display = "none";
     return;
   }
 
-  // Hide "Shop Now" and show "Clear Cart" if we have items
+  // Since we have items, we hide "Shop Now" and show the "Clear Cart" button
   if (shopNowBtn) shopNowBtn.style.display = "none";
   if (clearBtn) clearBtn.style.display = "block";
 
-  // Add items with + and - buttons to adjust quantity
+  // For the drawer, we add cool + and - buttons to adjust quantities easily!
   for (var i = 0; i < cart.length; i += 1) {
     var item = cart[i];
 
+    // Notice the class="qty-minus" and class="qty-plus". We will use these below!
     body.innerHTML +=
       "<tr><td>" + item.name + "</td>" +
       "<td style=\"text-align: center;\">" +
@@ -462,80 +437,80 @@ function renderCartDrawer() {
       "</td></tr>";
   }
 
-  // Update totals in the drawer
   var totals = calculateCartTotals(cart);
   totalTarget.textContent = "NPR " + totals.totalPrice;
   countTarget.textContent = String(totals.totalQty);
 
-  // Bind the plus and minus buttons we just created
+  // Remember those + and - buttons we just drew? We need to activate them!
   bindDrawerQuantityButtons();
 }
 
-// Connects the + and - buttons in the cart drawer
+// Wakes up the + and - buttons inside the drawer so they actually work
 function bindDrawerQuantityButtons() {
   var plusButtons = document.querySelectorAll(".qty-plus");
   var minusButtons = document.querySelectorAll(".qty-minus");
 
-  // When a plus button is clicked, add 1 to the quantity
+  // Hook up the PLUS buttons
   for (var i = 0; i < plusButtons.length; i += 1) {
     plusButtons[i].addEventListener("click", function () {
-      var itemName = this.getAttribute("data-item"); // Which item?
+      var itemName = this.getAttribute("data-item"); // Figure out which item they clicked
       updateItemQuantity(itemName, 1); // Add 1
     });
   }
 
-  // When a minus button is clicked, subtract 1 from the quantity
+  // Hook up the MINUS buttons
   for (var j = 0; j < minusButtons.length; j += 1) {
     minusButtons[j].addEventListener("click", function () {
-      var itemName = this.getAttribute("data-item"); // Which item?
+      var itemName = this.getAttribute("data-item");
       updateItemQuantity(itemName, -1); // Subtract 1
     });
   }
 }
 
-// -----------------------------
-// 6) Cart UI actions (Clicks and gestures)
-// -----------------------------
 
-// Opens the slide-out cart drawer
+// ==========================================
+// SECTION 6: Cart Buttons (Clicks and Swipes)
+// ==========================================
+
+// Opens the slide-out cart drawer on the right side
 function openCartDrawer() {
   var drawer = getById("cartDrawer");
-  var backdrop = getById("cartDrawerBackdrop"); // The dark background behind the drawer
+  var backdrop = getById("cartDrawerBackdrop"); // The dark shadow behind it
 
   if (!drawer || !backdrop) return;
 
-  renderCartDrawer(); // Make sure the drawer is updated with latest items
-  
-  // Show the drawer and backdrop
+  renderCartDrawer(); // Make sure the items shown are up-to-date!
+
+  // Adding the "open" class triggers CSS to slide it smoothly onto the screen
   drawer.classList.add("open");
   backdrop.classList.add("visible");
   drawer.setAttribute("aria-hidden", "false");
 }
 
-// Closes the slide-out cart drawer
+// Closes it by sliding it back out
 function closeCartDrawer() {
   var drawer = getById("cartDrawer");
   var backdrop = getById("cartDrawerBackdrop");
 
   if (!drawer || !backdrop) return;
 
-  // Hide the drawer and backdrop
   drawer.classList.remove("open");
   backdrop.classList.remove("visible");
   drawer.setAttribute("aria-hidden", "true");
 }
 
-// What happens when the user clicks the "Shop Now" button inside an empty cart
+// When you click "Shop Now", it sends you to the products page!
 function handleShopNowClick() {
   var currentPath = window.location.pathname;
 
-  // If user is already on products page, just close the drawer.
+  // If you're already ON the products page, just close the drawer.
   if (currentPath.indexOf("products.html") !== -1) {
     closeCartDrawer();
     return;
   }
 
-  // Otherwise, move them to the products page.
+  // Otherwise, teleport them to the products page.
+  // We check if we are in the main folder or a sub-folder to get the link right.
   if (currentPath.includes('/pages/')) {
     window.location.href = 'products.html';
   } else {
@@ -543,7 +518,7 @@ function handleShopNowClick() {
   }
 }
 
-// Connects all buttons related to opening/closing the cart
+// Attaches the events to open/close cart buttons
 function bindCartDrawerButtons() {
   var openBtn = getById("openCartBtn");
   var closeBtn = getById("closeCartDrawer");
@@ -551,44 +526,41 @@ function bindCartDrawerButtons() {
   var clearBtn = getById("clearDrawerCartBtn");
   var shopNowBtn = getById("shopNowBtn");
 
-  // Listeners to open and close
   if (openBtn) openBtn.addEventListener("click", openCartDrawer);
   if (closeBtn) closeBtn.addEventListener("click", closeCartDrawer);
-  if (backdrop) backdrop.addEventListener("click", closeCartDrawer);
+  if (backdrop) backdrop.addEventListener("click", closeCartDrawer); // Clicking the dark background closes it too
 
-  // Action for "Clear Cart" button
   if (clearBtn) {
     clearBtn.addEventListener("click", function () {
-      clearCart(); // Empty the array
-      // Update all views
+      clearCart(); // Delete everything!
       renderCartPage();
       renderCartSidebar();
       renderCartDrawer();
-      showAlertBar("Cart cleared.");
+      showAlertBar("Cart cleared like magic!");
     });
   }
 
-  // Action for "Shop Now" button
   if (shopNowBtn) {
     shopNowBtn.addEventListener("click", handleShopNowClick);
   }
 }
 
-// Connects the "Add to Cart" buttons found on the products list
+// Finds every single "Add to Cart" button on the webpage and activates it!
 function bindAddToCartButtons() {
   var buttons = document.querySelectorAll(".add-to-cart-btn");
-  if (!buttons.length) return; // If no buttons found, stop
+  if (!buttons.length) return;
 
   for (var i = 0; i < buttons.length; i += 1) {
     buttons[i].addEventListener("click", function () {
-      var name = this.getAttribute("data-name"); // Get item name
-      var price = this.getAttribute("data-price"); // Get item price
-      addToCart(name, price); // Add to cart
+      // It reads the hidden name and price from the button's HTML data
+      var name = this.getAttribute("data-name");
+      var price = this.getAttribute("data-price");
+      addToCart(name, price);
     });
   }
 }
 
-// Extra clear buttons on older pages
+// Buttons from old pages to clear the cart
 function bindClearButtonsOnOldPages() {
   var clearBtn = getById("clearCartBtn") || getById("clearEstimateBtn");
   var clearSidebarBtn = getById("clearSidebarCartBtn");
@@ -597,7 +569,7 @@ function bindClearButtonsOnOldPages() {
     clearBtn.addEventListener("click", function () {
       clearCart();
       renderCartPage();
-      showAlertBar("Cart cleared.");
+      showAlertBar("Cart totally cleared!");
     });
   }
 
@@ -605,43 +577,45 @@ function bindClearButtonsOnOldPages() {
     clearSidebarBtn.addEventListener("click", function () {
       clearCart();
       renderCartSidebar();
-      showAlertBar("Cart cleared.");
+      showAlertBar("Cart totally cleared!");
     });
   }
 }
 
-// -----------------------------
-// 7) Other page features
-// -----------------------------
 
-// Puts today's date on the page
+// ==========================================
+// SECTION 7: Extra Cool Features
+// ==========================================
+
+// Puts today's actual date on the webpage so it feels alive
 function updateCurrentDate() {
   var target = getById("todayDate");
   if (!target) return;
-  target.textContent = new Date().toDateString(); // E.g., "Wed Apr 29 2026"
+  // new Date().toDateString() gives us a readable date like "Wed Apr 29 2026"
+  target.textContent = new Date().toDateString();
 }
 
-// Hides or shows products based on the category filter
+// The Category Filter (shows only "Plants" or "Seeds" when you select them from a dropdown)
 function filterProducts() {
-  var filter = getById("productFilter"); // The dropdown select element
+  var filter = getById("productFilter");
   if (!filter) return;
 
-  var selected = filter.value; // What category did user choose?
+  var selected = filter.value; // What did the user pick? e.g. "tools"
   var cards = document.querySelectorAll(".product-card");
 
   for (var i = 0; i < cards.length; i += 1) {
     var category = cards[i].getAttribute("data-category");
 
-    // If 'all' is selected or the card matches the category, show it
+    // If they picked "all", OR if the card matches the pick, show it!
     if (selected === "all" || category === selected) {
-      cards[i].style.display = "block";
+      cards[i].style.display = "block"; // Show
     } else {
-      cards[i].style.display = "none"; // Hide otherwise
+      cards[i].style.display = "none"; // Hide
     }
   }
 }
 
-// Checks if the feedback form is filled out correctly before sending
+// The bouncer for our Contact Form. Checks if you typed everything correctly!
 function validateFeedbackForm(event) {
   var form = getById("feedbackForm");
   if (!form) return true;
@@ -650,40 +624,42 @@ function validateFeedbackForm(event) {
   var emailInput = getById("email");
   var messageInput = getById("message");
   var errorBox = getById("formError");
-  
-  // A simple pattern to check if email looks like "text@text.text"
+
+  // This scary looking code is called a "Regular Expression" (RegEx).
+  // It's like a secret code that checks if an email looks right (e.g., text@text.com)
   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!nameInput || !emailInput || !messageInput || !errorBox) return true;
 
+  // .trim() removes extra spaces if you accidentally typed spaces at the beginning or end
   var name = nameInput.value.trim();
   var email = emailInput.value.trim();
   var message = messageInput.value.trim();
 
-  errorBox.textContent = ""; // Clear any old error messages
+  errorBox.textContent = ""; // Clear old error messages
 
-  // Name must be at least 3 characters
+  // Rule 1: Name must be at least 3 letters
   if (name.length < 3) {
-    event.preventDefault(); // Stop form from sending
-    errorBox.textContent = "Name should be at least 3 characters.";
+    event.preventDefault(); // Stop! Don't send the form!
+    errorBox.textContent = "Oops! Name should be at least 3 characters.";
     return false;
   }
 
-  // Email must be valid
+  // Rule 2: Email must look like a real email
   if (!emailPattern.test(email)) {
-    event.preventDefault(); // Stop form from sending
-    errorBox.textContent = "Please enter a valid email address.";
+    event.preventDefault();
+    errorBox.textContent = "Hmm, that doesn't look like a real email address.";
     return false;
   }
 
-  // If everything is okay, show success popup!
-  event.preventDefault(); // We stop it just to show popup, normally it would send to server
-  showPopup("Thank you! Your feedback was submitted successfully.");
-  form.reset(); // Clear the form inputs
+  // If you passed all the rules, congratulations! 
+  event.preventDefault(); // Normally we'd send it to a server, but we stop it here to just show a popup
+  showPopup("Awesome! Thank you for your feedback!");
+  form.reset(); // Erase what was typed to give them a clean slate
   return true;
 }
 
-// Toggles the team members section visibility
+// A button that shows or hides the Team Members section
 function bindTeamToggleButton() {
   var toggleBtn = getById("teamToggleBtn");
   var teamSection = getById("teamMembersSection");
@@ -691,26 +667,25 @@ function bindTeamToggleButton() {
   if (!toggleBtn || !teamSection) return;
 
   toggleBtn.addEventListener("click", function () {
-    var isHidden = teamSection.hasAttribute("hidden"); // Check if hidden
+    var isHidden = teamSection.hasAttribute("hidden"); // Is it hidden right now?
 
     if (isHidden) {
-      teamSection.removeAttribute("hidden"); // Show it
-      toggleBtn.textContent = "Hide Team Members"; // Change button text
+      teamSection.removeAttribute("hidden"); // Unhide it!
+      toggleBtn.textContent = "Hide Team Members"; // Change what the button says
       toggleBtn.setAttribute("aria-expanded", "true");
     } else {
-      teamSection.setAttribute("hidden", ""); // Hide it
-      toggleBtn.textContent = "Show Our Team Members"; // Change button text
+      teamSection.setAttribute("hidden", ""); // Hide it!
+      toggleBtn.textContent = "Show Our Team Members";
       toggleBtn.setAttribute("aria-expanded", "false");
     }
   });
 }
 
-// Closes the team member details popup
 function closeTeamMemberModal() {
   closeModal(getById("teamMemberModal"));
 }
 
-// Opens popup for team members when clicked
+// Opens a popup when you click on a team member's name
 function bindTeamMemberPopups() {
   var buttons = document.querySelectorAll(".team-member-name-btn");
   var modal = getById("teamMemberModal");
@@ -719,36 +694,29 @@ function bindTeamMemberPopups() {
   var modalName = getById("teamMemberModalName");
   var modalAbout = getById("teamMemberModalAbout");
 
-  // Make sure all parts exist
-  if (!buttons.length || !modal || !closeBtn || !modalImage || !modalName || !modalAbout) {
-    return;
-  }
+  if (!buttons.length || !modal || !closeBtn || !modalImage || !modalName || !modalAbout) return;
 
-  // Add click to each team member button
   for (var i = 0; i < buttons.length; i += 1) {
     buttons[i].addEventListener("click", function () {
-      // Get info from button attributes
       var name = this.getAttribute("data-name") || "Team Member";
       var about = this.getAttribute("data-about") || "";
       var photo = this.getAttribute("data-photo") || "";
 
-      // Fill in the popup
       modalName.textContent = name;
-      // modalRole.textContent = "Role: " + role; // Removed role display
+
+      // We grab just the skills part, cutting off at the word 'Interest:'
       var skillsOnly = about.split(' Interest:')[0];
       modalAbout.textContent = skillsOnly;
+
       modalImage.src = photo;
       modalImage.alt = "Photo of " + name;
 
-      // Show popup
       openModal(modal);
     });
   }
 
-  // Close when X is clicked
   closeBtn.addEventListener("click", closeTeamMemberModal);
 
-  // Close when clicking outside box
   modal.addEventListener("click", function (event) {
     if (event.target === modal) {
       closeTeamMemberModal();
@@ -756,12 +724,12 @@ function bindTeamMemberPopups() {
   });
 }
 
-// Automatically changes the background picture on the hero section (home page top banner)
+// The Automatic Image Slider for the Home Page banner
 function startHeroBackgroundSlider() {
-  var hero = document.querySelector(".hero");
-  if (!hero) return; // If not on home page, do nothing
+  var hero = document.querySelector(".hero"); // Find the big top banner section
+  if (!hero) return; // Stop if we aren't on the home page
 
-  // List of images to slide through
+  // A list (Array) of 4 cool pictures to slide through
   var heroImages = [
     "images/hero-bg.png",
     "images/home-bg-2.png",
@@ -769,24 +737,27 @@ function startHeroBackgroundSlider() {
     "images/home-bg-4.png"
   ];
 
-  var currentIndex = 0; // Start with first image
+  var currentIndex = 0; // We start at picture 0 (the first one)
 
-  // Change image every 2 seconds (2000 milliseconds)
+  // window.setInterval is like a ticking clock. 
+  // It runs this code over and over every 2000 milliseconds (2 seconds)
   window.setInterval(function () {
-    currentIndex = currentIndex + 1; // Move to next image
+    currentIndex = currentIndex + 1; // Move to the next picture
+
+    // If we reach the end of our list, go back to the start!
     if (currentIndex >= heroImages.length) {
-      currentIndex = 0; // Restart from the beginning
+      currentIndex = 0;
     }
 
-    // Apply the new background image to the hero section
+    // Change the background image using CSS from JavaScript!
     hero.style.backgroundImage = 'url("' + heroImages[currentIndex] + '")';
     hero.style.backgroundPosition = "center";
     hero.style.backgroundSize = "cover";
     hero.style.backgroundRepeat = "no-repeat";
-  }, 2000);
+  }, 2000); // 2000 ms = 2 seconds
 }
 
-// Controls the "Read More" and "Show Less" text in the research section
+// A simple button on the Research page to expand large paragraphs of text
 function bindResearchReadMoreButton() {
   var readMoreBtn = getById("researchReadMoreBtn");
   var showLessBtn = getById("researchShowLessBtn");
@@ -794,72 +765,76 @@ function bindResearchReadMoreButton() {
 
   if (!readMoreBtn || !showLessBtn || !summarySection) return;
 
-  // Show text when "Read More" is clicked
+  // When you click "Read More"...
   readMoreBtn.addEventListener("click", function () {
-    summarySection.removeAttribute("hidden");
-    readMoreBtn.style.display = "none";
-    showLessBtn.style.display = "inline-block";
+    summarySection.removeAttribute("hidden"); // Show the huge text
+    readMoreBtn.style.display = "none"; // Hide the "Read More" button
+    showLessBtn.style.display = "inline-block"; // Show the "Show Less" button instead
   });
 
-  // Hide text when "Show Less" is clicked
+  // When you click "Show Less"...
   showLessBtn.addEventListener("click", function () {
-    summarySection.setAttribute("hidden", "");
-    showLessBtn.style.display = "none";
-    readMoreBtn.style.display = "inline-block";
+    summarySection.setAttribute("hidden", ""); // Hide the huge text
+    showLessBtn.style.display = "none"; // Hide the "Show Less" button
+    readMoreBtn.style.display = "inline-block"; // Bring back the "Read More" button
   });
 }
 
-// -----------------------------
-// 8) Site initialization (Starts everything)
-// -----------------------------
 
-// This is the main function that runs when the web page loads
+// ==========================================
+// SECTION 8: START YOUR ENGINES! (Site Initialization)
+// ==========================================
+// This is the Master Controller. It runs all our setup functions 
+// as soon as the page is ready.
+
 function initSite() {
-  updateCurrentDate(); // Show today's date
+  updateCurrentDate(); // 1. Put the date on screen
 
-  // Setup everything related to the Cart
+  // 2. Wake up all cart-related buttons
   bindAddToCartButtons();
   bindProductModalAddToCart();
   bindCartDrawerButtons();
   bindClearButtonsOnOldPages();
-  
-  // Refresh what the cart shows on screen initially
+
+  // 3. Draw the cart on the screen so it isn't blank
   renderCartPage();
   renderCartSidebar();
   renderCartDrawer();
 
-  // Setup all Popups (Modals)
+  // 4. Wake up all popup windows so they open when clicked
   bindProductCardPopups();
   bindBlogCardPopups();
   bindTeamMemberPopups();
   bindEscapeToCloseModals();
 
-  // Setup the Product category filter (if on products page)
+  // 5. Setup the Category dropdown filter
   var filter = getById("productFilter");
   if (filter) {
-    filter.addEventListener("change", filterProducts);
-    filterProducts(); // Filter immediately based on current selection
+    filter.addEventListener("change", filterProducts); // Run filter when dropdown changes
+    filterProducts(); // Also run it once immediately
   }
 
-  // Setup the Feedback form validation
+  // 6. Setup the Contact form bouncer
   var form = getById("feedbackForm");
   if (form) {
     form.addEventListener("submit", validateFeedbackForm);
   }
 
-  // Setup the Welcome button on the home page
+  // 7. A cute little Welcome button on the homepage
   var welcomeBtn = getById("welcomeBtn");
   if (welcomeBtn) {
     welcomeBtn.addEventListener("click", function () {
-      showPopup("Namaste from Pokhara! Welcome to UrbanSprout Nepal.");
+      showPopup("Namaste from Pokhara! Welcome to UrbanSprout Nepal!");
     });
   }
 
-  // Start remaining features
+  // 8. Turn on the remaining features
   bindTeamToggleButton();
   startHeroBackgroundSlider();
   bindResearchReadMoreButton();
 }
 
-// The browser waits for the HTML document to fully load before running initSite
+// This line is super important! 
+// It tells the browser: "Wait until the HTML is 100% loaded and ready. 
+// THEN, and only then, run the initSite function to start everything up!"
 document.addEventListener("DOMContentLoaded", initSite);
