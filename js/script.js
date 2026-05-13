@@ -1,21 +1,21 @@
-// shortcut for getting stuff from HTML
+// DOM helper
 function get(id) {
   return document.getElementById(id);
 }
 
-// show popup
+// Browser alert
 function popup(msg) {
   alert(msg);
 }
 
-// open popup window
+// Toggle visibility
 function show(el) {
   if (!el) return;
   el.classList.remove("hidden");
   el.setAttribute("aria-hidden", "false");
 }
 
-// close popup
+// Hide element
 function hide(el) {
   if (!el) return;
   el.classList.add("hidden");
@@ -25,7 +25,7 @@ function hide(el) {
 
 // ===== PRODUCT POPUP =====
 
-// open product popup when you click a product
+// Product details popup
 function showProduct(card) {
   let modal = get("productModal");
   let img = get("modalProductImage");
@@ -40,38 +40,38 @@ function showProduct(card) {
   let cardPrice = card.querySelector("strong");
   let cardDesc = card.querySelectorAll("p");
 
-  // get the description text
+  // Extract description
   let descText = "";
   if (cardDesc.length > 1) {
     descText = cardDesc[1].textContent.trim();
   }
 
-  // just the number from the price
+  // Remove price symbols
   let priceNum = "";
   if (cardPrice) {
     priceNum = cardPrice.textContent.replace(/[^0-9.]/g, "");
   }
 
-  // fill the popup with the product info
+  // Populate modal fields
   img.src = cardImg ? cardImg.src : "";
   img.alt = cardImg ? cardImg.alt : "Product";
   name.textContent = cardName ? cardName.textContent : "";
   price.textContent = cardPrice ? "Price: " + cardPrice.textContent : "";
   desc.textContent = descText;
 
-  // save the info for "add to cart"
+  // Store for cart
   modal.dataset.productName = cardName ? cardName.textContent : "";
   modal.dataset.productPrice = priceNum;
 
   show(modal);
 }
 
-// close product popup
+// Close product modal
 function hideProduct() {
   hide(get("productModal"));
 }
 
-// click on product to see popup
+// Attach modal listeners
 function attachProductPopups() {
   let cards = document.querySelectorAll(".product-card");
   let modal = get("productModal");
@@ -93,7 +93,7 @@ function attachProductPopups() {
   });
 }
 
-// click add to cart in the popup
+// Modal add button
 function attachProductCartBtn() {
   let btn = get("modalAddToCartBtn");
   let modal = get("productModal");
@@ -112,6 +112,7 @@ function attachProductCartBtn() {
 
 // ===== BLOG POPUP =====
 
+// Blog modal popup
 function showBlog(card) {
   let modal = get("blogModal");
   let img = get("modalBlogImage");
@@ -139,10 +140,12 @@ function showBlog(card) {
   show(modal);
 }
 
+// Close blog modal
 function hideBlog() {
   hide(get("blogModal"));
 }
 
+// Attach blog listeners
 function attachBlogPopups() {
   let cards = document.querySelectorAll(".blog-topic");
   let modal = get("blogModal");
@@ -162,7 +165,7 @@ function attachBlogPopups() {
   });
 }
 
-// press escape to close popups
+// Close all modals
 function attachEscape() {
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
@@ -174,23 +177,25 @@ function attachEscape() {
 }
 
 
-// ===== CART =====
-
+// Shopping cart storage
 let cart = [];
 
+// Retrieve cart
 function getCart() {
   return cart;
 }
 
+// Update cart
 function saveCart(items) {
   cart = items;
 }
 
+// Empty cart
 function clearCart() {
   saveCart([]);
 }
 
-// find an item in the cart
+// Find item index
 function findItem(name) {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === name) return i;
@@ -198,7 +203,7 @@ function findItem(name) {
   return -1;
 }
 
-// count total price and items
+// Calculate totals
 function getTotal(items) {
   let total = { price: 0, qty: 0 };
   for (let i = 0; i < items.length; i++) {
@@ -208,7 +213,7 @@ function getTotal(items) {
   return total;
 }
 
-// add something to cart
+// Add item
 function addCart(name, price) {
   let c = getCart();
   let idx = findItem(name);
@@ -226,7 +231,7 @@ function addCart(name, price) {
   drawDrawer();
 }
 
-// change qty of item
+// Adjust quantity
 function changeQty(name, change) {
   let c = getCart();
   let idx = findItem(name);
@@ -248,6 +253,7 @@ function changeQty(name, change) {
 
 // ===== DRAW CART ON PAGE =====
 
+// Render main table
 function drawCart() {
   let body = get("cartBody") || get("estimateBody");
   let totalEl = get("cartTotal") || get("estimateTotal");
@@ -276,6 +282,7 @@ function drawCart() {
   countEl.textContent = String(t.qty);
 }
 
+// Render sidebar
 function drawSidebar() {
   let body = get("sidebarCartBody");
   let totalEl = get("sidebarCartTotal");
@@ -302,6 +309,7 @@ function drawSidebar() {
   countEl.textContent = String(t.qty);
 }
 
+// Render drawer panel
 function drawDrawer() {
   let body = get("drawerCartBody");
   let totalEl = get("drawerCartTotal");
@@ -338,6 +346,7 @@ function drawDrawer() {
   attachQtyBtns();
 }
 
+// Qty +/- listeners
 function attachQtyBtns() {
   let plus = document.querySelectorAll(".qty-plus");
   let minus = document.querySelectorAll(".qty-minus");
@@ -360,6 +369,7 @@ function attachQtyBtns() {
 
 // ===== CART BUTTONS =====
 
+// Slide drawer in
 function openDrawer() {
   let drawer = get("cartDrawer");
   let backdrop = get("cartDrawerBackdrop");
@@ -370,6 +380,7 @@ function openDrawer() {
   backdrop.classList.add("visible");
 }
 
+// Slide drawer out
 function closeDrawer() {
   let drawer = get("cartDrawer");
   let backdrop = get("cartDrawerBackdrop");
@@ -379,6 +390,7 @@ function closeDrawer() {
   backdrop.classList.remove("visible");
 }
 
+// Navigate to products
 function goShop() {
   let path = window.location.pathname;
   if (path.indexOf("products.html") !== -1) {
@@ -392,6 +404,7 @@ function goShop() {
   }
 }
 
+// Cart UI listeners
 function attachCartBtns() {
   let openBtn = get("openCartBtn");
   let closeBtn = get("closeCartDrawer");
@@ -416,7 +429,7 @@ function attachCartBtns() {
   if (shopBtn) shopBtn.addEventListener("click", goShop);
 }
 
-// find all add to cart buttons
+// Product add buttons
 function attachAddBtns() {
   let btns = document.querySelectorAll(".add-to-cart-btn");
   if (!btns.length) return;
@@ -430,7 +443,7 @@ function attachAddBtns() {
   }
 }
 
-// clear buttons on other pages
+// Clear page buttons
 function attachClearBtns() {
   let btn1 = get("clearCartBtn") || get("clearEstimateBtn");
   let btn2 = get("clearSidebarCartBtn");
@@ -455,14 +468,14 @@ function attachClearBtns() {
 
 // ===== OTHER STUFF =====
 
-// show date
+// Display current date
 function showDate() {
   let el = get("todayDate");
   if (!el) return;
   el.textContent = new Date().toDateString();
 }
 
-// filter products by type
+// Product category filter
 function attachFilter() {
   let filter = get("productFilter");
   if (!filter) return;
@@ -485,46 +498,7 @@ function attachFilter() {
   filter.dispatchEvent(new Event("change"));
 }
 
-// check contact form
-function checkForm(e) {
-  let form = get("feedbackForm");
-  if (!form) return true;
-
-  let nameEl = get("name");
-  let emailEl = get("email");
-  let msgEl = get("message");
-  let errEl = get("formError");
-
-  if (!nameEl || !emailEl || !msgEl || !errEl) return true;
-
-  let name = nameEl.value.trim();
-  let email = emailEl.value.trim();
-  let msg = msgEl.value.trim();
-
-  errEl.textContent = "";
-
-  // check name
-  if (name.length < 3) {
-    e.preventDefault();
-    errEl.textContent = "Name too short!";
-    return false;
-  }
-
-  // check email
-  let emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if (!emailOk) {
-    e.preventDefault();
-    errEl.textContent = "Bad email!";
-    return false;
-  }
-
-  e.preventDefault();
-  popup("Thanks!");
-  form.reset();
-  return true;
-}
-
-// toggle team section
+// Team collapse toggle
 function attachTeamToggle() {
   let btn = get("teamToggleBtn");
   let section = get("teamMembersSection");
@@ -546,11 +520,12 @@ function attachTeamToggle() {
   });
 }
 
+// Close team modal
 function hideTeam() {
   hide(get("teamMemberModal"));
 }
 
-// click team member
+// Member profile modal
 function attachTeamPopups() {
   let btns = document.querySelectorAll(".team-member-name-btn");
   let modal = get("teamMemberModal");
@@ -583,7 +558,7 @@ function attachTeamPopups() {
   });
 }
 
-// image slider for hero
+// Auto-rotate hero
 function startSlider() {
   let hero = document.querySelector(".hero");
   if (!hero) return;
@@ -606,7 +581,7 @@ function startSlider() {
   }, 2000);
 }
 
-// read more button
+// Expand/collapse text
 function attachReadMore() {
   let readBtn = get("researchReadMoreBtn");
   let lessBtn = get("researchShowLessBtn");
@@ -627,7 +602,7 @@ function attachReadMore() {
   });
 }
 
-// show alert message
+// Console output
 function alertMsg(msg) {
   console.log(msg);
 }
@@ -635,10 +610,11 @@ function alertMsg(msg) {
 
 // ===== START =====
 
+// Initialize page
 function start() {
   showDate();
 
-  // cart stuff
+  // Cart setup
   attachAddBtns();
   attachProductCartBtn();
   attachCartBtns();
@@ -648,22 +624,25 @@ function start() {
   drawSidebar();
   drawDrawer();
 
-  // popups
+  // Modals
   attachProductPopups();
   attachBlogPopups();
   attachTeamPopups();
   attachEscape();
 
-  // other
+  // Features
   attachFilter();
-
-  let form = get("feedbackForm");
-  if (form) form.addEventListener("submit", checkForm);
 
   let welcomeBtn = get("welcomeBtn");
   if (welcomeBtn) {
     welcomeBtn.addEventListener("click", function () {
       popup("Welcome!");
+    });
+  }
+  let submitBtn = get("submit");
+  if(submitBtn) {
+    submitBtn.addEventListener("click", function () {
+      popup("Form submitted!");
     });
   }
 

@@ -77,6 +77,12 @@ body {
 
 .cart-drawer-backdrop {
   position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2050;
 }
 
 .cart-drawer-backdrop.visible {
@@ -86,6 +92,8 @@ body {
 
 .cart-drawer {
   position: fixed;
+  top: 0;
+  right: 0;
   height: 100%;
   width: 420px;
   background: #f8fff8;
@@ -293,7 +301,7 @@ body {
 }
 
 .btn-secondary {
-  background: var(--accent);
+  background: var(--green-dark);
 }
 
 .qty-btn {
