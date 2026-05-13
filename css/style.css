@@ -9,7 +9,6 @@
   --cream: #f5f8ef;
   --text-dark: #1f2937;
   --card-bg: #ffffff;
-  --accent: #ef6c00;
 }
 
 /* Reset and default page style. */
@@ -18,32 +17,24 @@
 }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   color: var(--text-dark);
-  background: linear-gradient(
-    180deg,
-    var(--sky-lake) 0%,
-    #f8fff8 45%,
-    #eef7e7 100%
-  );
-  line-height: 1.6;
+  background: linear-gradient(180deg,
+      var(--card-bg) 0%,
+      var(--cream) 45%,
+      var(--sky-lake) 100%);
 }
 
 /* Shared page container. */
 .container {
   width: min(1100px, 92%);
-  margin: 0 auto;
+  margin: auto;
 }
 
 /* Top menu styles. */
 .navbar {
   background: var(--green-dark);
-  color: #fff;
-  padding: 0.5rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  color: var(--card-bg);
 }
 
 .nav-inner {
@@ -55,57 +46,37 @@ body {
 }
 
 .brand {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  margin: 0;
-  padding: 0;
   gap: 0.4rem;
-  flex-wrap: wrap;
 }
 
 .nav-links a {
-  color: #fff;
+  color: var(--card-bg);
   text-decoration: none;
   padding: 0.45rem 0.7rem;
   border-radius: 0.4rem;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  background-color: rgba(255, 255, 255, 0.2);
-}
 
 .cart-toggle {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
   width: 3rem;
   height: 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 0.6rem;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  border: none;
+  background: var(--green-dark);
+  color: var(--card-bg);
   font-size: 1.35rem;
   cursor: pointer;
 }
 
-.cart-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
 .cart-drawer-backdrop {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  z-index: 2050;
 }
 
 .cart-drawer-backdrop.visible {
@@ -115,10 +86,8 @@ body {
 
 .cart-drawer {
   position: fixed;
-  top: 0;
-  right: 0;
   height: 100%;
-  width: min(420px, 92%);
+  width: 420px;
   background: #f8fff8;
   box-shadow: -18px 0 40px rgba(0, 0, 0, 0.18);
   transform: translateX(100%);
@@ -148,7 +117,7 @@ body {
 }
 
 .cart-drawer-body p {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
 }
 
 .cart-drawer .modal-close {
@@ -186,7 +155,7 @@ body {
   align-items: start;
 }
 
-.grid > a {
+.grid>a {
   display: block;
 }
 
@@ -278,12 +247,11 @@ body {
   width: 100%;
   padding: 1.5rem;
   position: relative;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content img {
   width: 100%;
-  max-height: 250px;
+  height: 300px;
   border-radius: 0.6rem;
   object-fit: cover;
   margin-bottom: 1rem;
@@ -405,6 +373,7 @@ footer {
   color: #205a21;
   font-size: 0.82rem;
 }
+
 .footer-text {
   font-size: 0.92rem;
   color: #e8f5e9;
@@ -433,8 +402,6 @@ footer {
 }
 
 .csl-entry:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
   border-bottom: none;
 }
 
