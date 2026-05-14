@@ -405,6 +405,7 @@ function goShop() {
   }
 }
 
+// click events for cart drawer (i learned this in week 5)
 function attachCartBtns() {
   var openBtn = get("openCartBtn");
   var closeBtn = get("closeCartDrawer");
@@ -412,11 +413,21 @@ function attachCartBtns() {
   var clearBtn = get("clearDrawerCartBtn");
   var shopBtn = get("shopNowBtn");
 
+  // cart is a <a href="#"> now so it looks like other nav links
   if (openBtn) {
-    openBtn.addEventListener("click", openDrawer);
+    openBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openDrawer();
+    });
   }
-  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
-  if (backdrop) backdrop.addEventListener("click", closeDrawer);
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeDrawer);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", closeDrawer);
+  }
 
   if (clearBtn) {
     clearBtn.addEventListener("click", function () {
@@ -428,7 +439,9 @@ function attachCartBtns() {
     });
   }
 
-  if (shopBtn) shopBtn.addEventListener("click", goShop);
+  if (shopBtn) {
+    shopBtn.addEventListener("click", goShop);
+  }
 }
 
 // Product add buttons

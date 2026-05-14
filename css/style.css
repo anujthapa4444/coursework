@@ -24,50 +24,36 @@ body {
 .navbar {
   background: #1b5e20;
   color: #ffffff;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
 .nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
   flex-wrap: wrap;
 }
 
 .brand {
-  font-size: 1rem;
+  font-size: 1.12rem;
   font-weight: 700;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.55rem;
 }
 
+/* links in the green bar (home, products, cart, etc) */
 .nav-links a {
   color: #ffffff;
   text-decoration: none;
-  padding: 0.45rem 0.7rem;
-  border-radius: 0.4rem;
-}
-
-
-/* Text cart button in the green bar */
-.cart-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.6rem;
-  padding: 0.35rem 0.85rem;
-  border: 2px solid #ffffff;
-  border-radius: 0.35rem;
-  background: #1b5e20;
-  color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
+  padding: 0.58rem 0.85rem;
+  border-radius: 0.45rem;
+  font-size: 1.02rem;
 }
 
 .cart-drawer-backdrop {
