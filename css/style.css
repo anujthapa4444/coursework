@@ -1,8 +1,10 @@
-/* Main CSS file. */
+/*
+ * UrbanSprout — main stylesheet
+ * Sections: reset → layout → navbar → cart drawer → hero → grids →
+ * products layout → tables → modals → buttons → forms → footer
+ */
 
-/* Color values. */
-/* Main colors for the page */
-/* Beginner-friendly CSS without custom variables */
+/* --- Reset --- */
 * {
   box-sizing: border-box;
 }
@@ -10,17 +12,18 @@
 body {
   font-family: "Times New Roman", Times, serif;
   color: #1f2937;
+  /* Page background: white into soft green and blue */
   background: linear-gradient(180deg, #ffffff 0%, #f5f8ef 45%, #dff3ff 100%);
 }
 
-/* Shared page container. */
+/* --- Page width --- */
 .container {
   width: 92%;
   max-width: 1100px;
   margin: auto;
 }
 
-/* Top menu styles. */
+/* --- Top navigation --- */
 .navbar {
   background: #1b5e20;
   color: #ffffff;
@@ -47,7 +50,7 @@ body {
   gap: 0.55rem;
 }
 
-/* links in the green bar (home, products, cart, etc) */
+/* Nav links (Home, Products, Cart, …) */
 .nav-links a {
   color: #ffffff;
   text-decoration: none;
@@ -56,6 +59,7 @@ body {
   font-size: 1.02rem;
 }
 
+/* --- Cart drawer (slides in from the right) --- */
 .cart-drawer-backdrop {
   position: fixed;
   top: 0;
@@ -118,10 +122,10 @@ body {
 }
 
 .cart-drawer .cart-table {
-  margin-bottom: 1rem;    
+  margin-bottom: 1rem;
 }
 
-/* Hero section styles. */
+/* --- Hero banner (home) --- */
 .hero {
   min-height: 48vh;
   display: flex;
@@ -139,7 +143,7 @@ body {
   color: #fff;
 }
 
-/* Grid and card styles. */
+/* --- Grid and cards --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -151,7 +155,7 @@ body {
   display: block;
 }
 
-/* Products layout. */
+/* --- Products page: main + sidebar --- */
 .product-layout {
   display: grid;
   grid-template-columns: 1.8fr 0.95fr;
@@ -217,6 +221,7 @@ body {
   cursor: pointer;
 }
 
+/* --- Modals (product / blog popups) --- */
 .modal {
   position: fixed;
   top: 0;
@@ -268,7 +273,7 @@ body {
   color: #2e7d32;
 }
 
-/* Button styles. */
+/* --- Primary buttons --- */
 .btn {
   border: none;
   background: #2e7d32;
@@ -326,7 +331,7 @@ th {
   background-color: #dff0d8;
 }
 
-/* Form styles. */
+/* --- Forms --- */
 .form-group {
   margin-bottom: 0.8rem;
 }
@@ -346,7 +351,7 @@ select {
   font-size: 0.9rem;
 }
 
-/* Footer styles. */
+/* --- Footer --- */
 footer {
   margin-top: 2rem;
   background: #0f3d12;
@@ -355,7 +360,7 @@ footer {
   font-size: 0.92rem;
 }
 
-/* Helper styles. */
+/* --- Section spacing + badges --- */
 .section {
   padding: 2rem 0;
 }

@@ -1,29 +1,44 @@
-// helper so i dont type document.getElementById every time
+/**
+ * UrbanSprout — site behaviour (modals, cart, filters, etc.)
+ * One file is easier for coursework: every page loads this script.
+ */
+
+// ---------------------------------------------------------------------------
+// Small helpers
+// ---------------------------------------------------------------------------
+
+/** Returns the element with the given id, or null. */
 function get(id) {
   return document.getElementById(id);
 }
 
-// Show browser alert
+/** Browser alert dialog. */
 function popup(msg) {
   alert(msg);
 }
 
-// Show element on the page
+/** Shows a modal or panel (removes .hidden, updates aria). */
 function show(el) {
-  if (!el) return;
+  if (!el) {
+    return;
+  }
   el.classList.remove("hidden");
   el.setAttribute("aria-hidden", "false");
 }
 
-// Hide element from the page
+/** Hides a modal or panel. */
 function hide(el) {
-  if (!el) return;
+  if (!el) {
+    return;
+  }
   el.classList.add("hidden");
   el.setAttribute("aria-hidden", "true");
 }
-// ===== PRODUCT POPUP =====
 
-// Show product details popup
+// ---------------------------------------------------------------------------
+// Product modal (Products page)
+// ---------------------------------------------------------------------------
+
 function showProduct(card) {
   var modal = get("productModal");
   var img = get("modalProductImage");
@@ -31,72 +46,78 @@ function showProduct(card) {
   var price = get("modalProductPrice");
   var desc = get("modalProductDescription");
 
-  if (!modal || !img || !name || !price || !desc) return;
+  if (!modal || !img || !name || !price || !desc) {
+    return;
+  }
 
   var cardImg = card.querySelector("img");
   var cardName = card.querySelector("h3");
   var cardPrice = card.querySelector("strong");
   var cardParagraphs = card.querySelectorAll("p");
 
-  // Get description text from the card
+  // Second <p> on the card is treated as the long description.
   var descText = "";
   if (cardParagraphs.length > 1) {
     descText = cardParagraphs[1].textContent.trim();
   }
 
-  // Keep only numbers for the price
+  // Strip currency text so we can store a numeric price for the cart.
   var priceNum = "";
   if (cardPrice) {
     priceNum = cardPrice.textContent.replace(/[^0-9.]/g, "");
   }
 
-  // Show data in the popup
   img.src = cardImg ? cardImg.src : "";
   img.alt = cardImg ? cardImg.alt : "Product";
   name.textContent = cardName ? cardName.textContent : "";
   price.textContent = cardPrice ? "Price: " + cardPrice.textContent : "";
   desc.textContent = descText;
 
-  // Save product info for cart
   modal.dataset.productName = cardName ? cardName.textContent : "";
   modal.dataset.productPrice = priceNum;
 
   show(modal);
 }
 
-// Close product modal
 function hideProduct() {
   hide(get("productModal"));
 }
 
-// Attach modal listeners
 function attachProductPopups() {
   var cards = document.querySelectorAll(".product-card");
   var modal = get("productModal");
   var closeBtn = get("productModalClose");
 
-  if (!cards.length || !modal || !closeBtn) return;
+  if (!cards.length || !modal || !closeBtn) {
+    return;
+  }
 
   for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function (e) {
+      // Do not open the modal when the user clicked “Add to cart”.
       var btn = e.target.closest(".btn");
-      if (btn) return;
+      if (btn) {
+        return;
+      }
       showProduct(this);
     });
   }
 
   closeBtn.addEventListener("click", hideProduct);
   modal.addEventListener("click", function (e) {
-    if (e.target === modal) hideProduct();
+    if (e.target === modal) {
+      hideProduct();
+    }
   });
 }
 
-// Modal add button
 function attachProductCartBtn() {
   var btn = get("modalAddToCartBtn");
   var modal = get("productModal");
 
-  if (!btn || !modal) return;
+  if (!btn || !modal) {
+    return;
+  }
 
   btn.addEventListener("click", function () {
     var name = modal.dataset.productName;
@@ -107,10 +128,10 @@ function attachProductCartBtn() {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Blog modal (Blog page)
+// ---------------------------------------------------------------------------
 
-// ===== BLOG POPUP =====
-
-// Blog modal popup
 function showBlog(card) {
   var modal = get("blogModal");
   var img = get("modalBlogImage");
@@ -120,7 +141,9 @@ function showBlog(card) {
   var detail = get("modalBlogDetail");
   var tip = get("modalBlogTip");
 
-  if (!modal || !img || !topic || !title || !summary || !detail || !tip) return;
+  if (!modal || !img || !topic || !title || !summary || !detail || !tip) {
+    return;
+  }
 
   var cardImg = card.querySelector("img");
   var cardTopic = card.querySelector(".badge");
@@ -138,18 +161,18 @@ function showBlog(card) {
   show(modal);
 }
 
-// Close blog modal
 function hideBlog() {
   hide(get("blogModal"));
 }
 
-// Attach blog listeners
 function attachBlogPopups() {
   var cards = document.querySelectorAll(".blog-topic");
   var modal = get("blogModal");
   var closeBtn = get("blogModalClose");
 
-  if (!cards.length || !modal || !closeBtn) return;
+  if (!cards.length || !modal || !closeBtn) {
+    return;
+  }
 
   for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function () {
@@ -159,11 +182,13 @@ function attachBlogPopups() {
 
   closeBtn.addEventListener("click", hideBlog);
   modal.addEventListener("click", function (e) {
-    if (e.target === modal) hideBlog();
+    if (e.target === modal) {
+      hideBlog();
+    }
   });
 }
 
-// Close popups when the user presses Escape
+/** Escape key closes any open modal (safe if a modal is missing from the page). */
 function attachEscape() {
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
@@ -174,7 +199,10 @@ function attachEscape() {
   });
 }
 
-// my shopping cart list (i use var because we learned it in class)
+// ---------------------------------------------------------------------------
+// Shopping cart — data
+// ---------------------------------------------------------------------------
+
 var cart = [];
 
 function getCart() {
@@ -189,10 +217,9 @@ function clearCart() {
   saveCart([]);
 }
 
-// loop to find if we already have this plant name
+/** Returns index of line with this product name, or -1. */
 function findItem(name) {
-  var i;
-  for (i = 0; i < cart.length; i = i + 1) {
+  for (var i = 0; i < cart.length; i++) {
     if (cart[i].name === name) {
       return i;
     }
@@ -200,12 +227,12 @@ function findItem(name) {
   return -1;
 }
 
-// Calculate cart totals
+/** Sums price × quantity and counts total units. */
 function getTotal(items) {
   var total = { price: 0, qty: 0 };
   for (var i = 0; i < items.length; i++) {
-    total.price = total.price + (items[i].price * items[i].qty);
-    total.qty = total.qty + items[i].qty;
+    total.price += items[i].price * items[i].qty;
+    total.qty += items[i].qty;
   }
   return total;
 }
@@ -217,7 +244,7 @@ function addCart(name, price) {
   if (idx === -1) {
     c.push({ name: name, price: Number(price), qty: 1 });
   } else {
-    c[idx].qty = c[idx].qty + 1;
+    c[idx].qty += 1;
   }
 
   saveCart(c);
@@ -235,7 +262,7 @@ function changeQty(name, change) {
     return;
   }
 
-  c[idx].qty = c[idx].qty + change;
+  c[idx].qty += change;
 
   if (c[idx].qty <= 0) {
     c.splice(idx, 1);
@@ -247,16 +274,19 @@ function changeQty(name, change) {
   drawDrawer();
 }
 
+// ---------------------------------------------------------------------------
+// Shopping cart — update tables on the page
+// ---------------------------------------------------------------------------
 
-// ===== DRAW CART ON PAGE =====
-
-// Render main table
+/** Main cart / estimate table (only runs if those elements exist). */
 function drawCart() {
   var body = get("cartBody") || get("estimateBody");
   var totalEl = get("cartTotal") || get("estimateTotal");
   var countEl = get("cartItems") || get("estimateItems");
 
-  if (!body || !totalEl || !countEl) return;
+  if (!body || !totalEl || !countEl) {
+    return;
+  }
 
   var c = getCart();
   body.innerHTML = "";
@@ -271,7 +301,16 @@ function drawCart() {
   for (var i = 0; i < c.length; i++) {
     var item = c[i];
     var lineTotal = item.price * item.qty;
-    body.innerHTML += "<tr><td>" + item.name + "</td><td>NPR " + item.price + "</td><td>" + item.qty + "</td><td>NPR " + lineTotal + "</td></tr>";
+    body.innerHTML +=
+      "<tr><td>" +
+      item.name +
+      "</td><td>NPR " +
+      item.price +
+      "</td><td>" +
+      item.qty +
+      "</td><td>NPR " +
+      lineTotal +
+      "</td></tr>";
   }
 
   var t = getTotal(c);
@@ -279,13 +318,15 @@ function drawCart() {
   countEl.textContent = String(t.qty);
 }
 
-// Render sidebar
+/** Sidebar mini-cart (Products page layout). */
 function drawSidebar() {
   var body = get("sidebarCartBody");
   var totalEl = get("sidebarCartTotal");
   var countEl = get("sidebarCartItems");
 
-  if (!body || !totalEl || !countEl) return;
+  if (!body || !totalEl || !countEl) {
+    return;
+  }
 
   var c = getCart();
   body.innerHTML = "";
@@ -298,7 +339,8 @@ function drawSidebar() {
   }
 
   for (var i = 0; i < c.length; i++) {
-    body.innerHTML += "<tr><td>" + c[i].name + "</td><td>" + c[i].qty + "</td></tr>";
+    body.innerHTML +=
+      "<tr><td>" + c[i].name + "</td><td>" + c[i].qty + "</td></tr>";
   }
 
   var t = getTotal(c);
@@ -306,7 +348,7 @@ function drawSidebar() {
   countEl.textContent = String(t.qty);
 }
 
-// Render drawer panel
+/** Sliding cart drawer (all pages). */
 function drawDrawer() {
   var body = get("drawerCartBody");
   var totalEl = get("drawerCartTotal");
@@ -314,7 +356,9 @@ function drawDrawer() {
   var shopBtn = get("shopNowBtn");
   var clearBtn = get("clearDrawerCartBtn");
 
-  if (!body || !totalEl || !countEl) return;
+  if (!body || !totalEl || !countEl) {
+    return;
+  }
 
   var c = getCart();
   body.innerHTML = "";
@@ -323,17 +367,35 @@ function drawDrawer() {
     body.innerHTML = '<tr><td colspan="2">Empty cart.</td></tr>';
     totalEl.textContent = "NPR 0";
     countEl.textContent = "0";
-    if (shopBtn) shopBtn.style.display = "block";
-    if (clearBtn) clearBtn.style.display = "none";
+    if (shopBtn) {
+      shopBtn.style.display = "block";
+    }
+    if (clearBtn) {
+      clearBtn.style.display = "none";
+    }
     return;
   }
 
-  if (shopBtn) shopBtn.style.display = "none";
-  if (clearBtn) clearBtn.style.display = "block";
+  if (shopBtn) {
+    shopBtn.style.display = "none";
+  }
+  if (clearBtn) {
+    clearBtn.style.display = "block";
+  }
 
   for (var i = 0; i < c.length; i++) {
     var item = c[i];
-    body.innerHTML += "<tr><td>" + item.name + "</td><td style='text-align: center;'><button class='qty-btn qty-minus' data-item='" + item.name + "'>−</button> " + item.qty + " <button class='qty-btn qty-plus' data-item='" + item.name + "'>+</button></td></tr>";
+    body.innerHTML +=
+      "<tr><td>" +
+      item.name +
+      "</td><td style='text-align: center;'>" +
+      "<button type='button' class='qty-btn qty-minus' data-item='" +
+      item.name +
+      "'>−</button> " +
+      item.qty +
+      " <button type='button' class='qty-btn qty-plus' data-item='" +
+      item.name +
+      "'>+</button></td></tr>";
   }
 
   var t = getTotal(c);
@@ -343,7 +405,6 @@ function drawDrawer() {
   attachQtyBtns();
 }
 
-// Qty +/- listeners
 function attachQtyBtns() {
   var plus = document.querySelectorAll(".qty-plus");
   var minus = document.querySelectorAll(".qty-minus");
@@ -363,10 +424,10 @@ function attachQtyBtns() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Shopping cart — open / close drawer and “Shop now”
+// ---------------------------------------------------------------------------
 
-// ===== CART BUTTONS =====
-
-// show the cart panel from the right
 function openDrawer() {
   var drawer = get("cartDrawer");
   var backdrop = get("cartDrawerBackdrop");
@@ -379,7 +440,6 @@ function openDrawer() {
   backdrop.classList.add("visible");
 }
 
-// hide cart panel
 function closeDrawer() {
   var drawer = get("cartDrawer");
   var backdrop = get("cartDrawerBackdrop");
@@ -391,7 +451,9 @@ function closeDrawer() {
   backdrop.classList.remove("visible");
 }
 
-// go shop if empty cart
+/**
+ * From empty cart: go to Products. Path depends on whether we are under /pages/.
+ */
 function goShop() {
   var path = window.location.pathname;
   if (path.indexOf("products.html") !== -1) {
@@ -405,7 +467,6 @@ function goShop() {
   }
 }
 
-// click events for cart drawer (i learned this in week 5)
 function attachCartBtns() {
   var openBtn = get("openCartBtn");
   var closeBtn = get("closeCartDrawer");
@@ -413,7 +474,7 @@ function attachCartBtns() {
   var clearBtn = get("clearDrawerCartBtn");
   var shopBtn = get("shopNowBtn");
 
-  // cart is a <a href="#"> now so it looks like other nav links
+  // Cart link uses href="#" so it matches other nav links; prevent jumping to top.
   if (openBtn) {
     openBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -444,10 +505,11 @@ function attachCartBtns() {
   }
 }
 
-// Product add buttons
 function attachAddBtns() {
   var btns = document.querySelectorAll(".add-to-cart-btn");
-  if (!btns.length) return;
+  if (!btns.length) {
+    return;
+  }
 
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
@@ -458,7 +520,6 @@ function attachAddBtns() {
   }
 }
 
-// Clear page buttons
 function attachClearBtns() {
   var btn1 = get("clearCartBtn") || get("clearEstimateBtn");
   var btn2 = get("clearSidebarCartBtn");
@@ -480,20 +541,23 @@ function attachClearBtns() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Footer date, product filter, team, hero, research “read more”
+// ---------------------------------------------------------------------------
 
-// ===== OTHER STUFF =====
-
-// Display current date
 function showDate() {
   var el = get("todayDate");
-  if (!el) return;
+  if (!el) {
+    return;
+  }
   el.textContent = new Date().toDateString();
 }
 
-// Product category filter
 function attachFilter() {
   var filter = get("productFilter");
-  if (!filter) return;
+  if (!filter) {
+    return;
+  }
 
   filter.addEventListener("change", function () {
     var selected = filter.value;
@@ -509,38 +573,37 @@ function attachFilter() {
     }
   });
 
-  // run filter once
   filter.dispatchEvent(new Event("change"));
 }
 
-// Team collapse toggle
 function attachTeamToggle() {
   var btn = get("teamToggleBtn");
   var section = get("teamMembersSection");
 
-  if (!btn || !section) return;
+  if (!btn || !section) {
+    return;
+  }
 
   btn.addEventListener("click", function () {
     var hidden = section.hasAttribute("hidden");
 
     if (hidden) {
       section.removeAttribute("hidden");
-      btn.textContent = "Hide Team";
+      btn.textContent = "Hide Team Members";
       btn.setAttribute("aria-expanded", "true");
     } else {
       section.setAttribute("hidden", "");
-      btn.textContent = "Show Team";
+      btn.textContent = "Show Team Members";
       btn.setAttribute("aria-expanded", "false");
     }
   });
 }
 
-// Close team modal
+/** Legacy team-by-name modal (only runs if those elements still exist on a page). */
 function hideTeam() {
   hide(get("teamMemberModal"));
 }
 
-// Member profile modal
 function attachTeamPopups() {
   var btns = document.querySelectorAll(".team-member-name-btn");
   var modal = get("teamMemberModal");
@@ -549,7 +612,9 @@ function attachTeamPopups() {
   var name = get("teamMemberModalName");
   var about = get("teamMemberModalAbout");
 
-  if (!btns.length || !modal || !closeBtn || !img || !name || !about) return;
+  if (!btns.length || !modal || !closeBtn || !img || !name || !about) {
+    return;
+  }
 
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
@@ -558,7 +623,7 @@ function attachTeamPopups() {
       var memberPhoto = this.getAttribute("data-photo") || "";
 
       name.textContent = memberName;
-      var skills = memberAbout.split(' Interest:')[0];
+      var skills = memberAbout.split(" Interest:")[0];
       about.textContent = skills;
       img.src = memberPhoto;
       img.alt = memberName;
@@ -569,14 +634,17 @@ function attachTeamPopups() {
 
   closeBtn.addEventListener("click", hideTeam);
   modal.addEventListener("click", function (e) {
-    if (e.target === modal) hideTeam();
+    if (e.target === modal) {
+      hideTeam();
+    }
   });
 }
 
-// Auto-rotate hero
 function startSlider() {
   var hero = document.querySelector(".hero");
-  if (!hero) return;
+  if (!hero) {
+    return;
+  }
 
   var pics = [
     "images/hero-bg.png",
@@ -588,21 +656,24 @@ function startSlider() {
   var idx = 0;
 
   setInterval(function () {
-    idx = idx + 1;
-    if (idx >= pics.length) idx = 0;
+    idx += 1;
+    if (idx >= pics.length) {
+      idx = 0;
+    }
     hero.style.backgroundImage = 'url("' + pics[idx] + '")';
     hero.style.backgroundPosition = "center";
     hero.style.backgroundSize = "cover";
   }, 2000);
 }
 
-// Expand/collapse text
 function attachReadMore() {
   var readBtn = get("researchReadMoreBtn");
   var lessBtn = get("researchShowLessBtn");
   var section = get("researchSummarySection");
 
-  if (!readBtn || !lessBtn || !section) return;
+  if (!readBtn || !lessBtn || !section) {
+    return;
+  }
 
   readBtn.addEventListener("click", function () {
     section.removeAttribute("hidden");
@@ -617,19 +688,18 @@ function attachReadMore() {
   });
 }
 
-// Print messages in the browser console
+/** Logs feedback messages (used after add to cart / clear). */
 function alertMsg(msg) {
   console.log(msg);
 }
 
+// ---------------------------------------------------------------------------
+// Start — runs once the HTML is parsed
+// ---------------------------------------------------------------------------
 
-// ===== START =====
-
-// Start the page
 function start() {
   showDate();
 
-  // Cart setup
   attachAddBtns();
   attachProductCartBtn();
   attachCartBtns();
@@ -639,13 +709,11 @@ function start() {
   drawSidebar();
   drawDrawer();
 
-  // Modals
   attachProductPopups();
   attachBlogPopups();
   attachTeamPopups();
   attachEscape();
 
-  // Features
   attachFilter();
 
   var welcomeBtn = get("welcomeBtn");
@@ -654,8 +722,9 @@ function start() {
       popup("Welcome!");
     });
   }
+
   var submitBtn = get("submit");
-  if(submitBtn) {
+  if (submitBtn) {
     submitBtn.addEventListener("click", function () {
       popup("Form submitted!");
     });

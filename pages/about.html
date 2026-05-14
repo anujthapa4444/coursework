@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- UrbanSprout: About -->
 <html lang="en">
   <head>
     <!-- Page info -->
@@ -11,34 +12,68 @@
     <title>UrbanSprout Nepal | About Us</title>
     <link rel="stylesheet" href="../css/style.css" />
 
-    <!-- About-only CSS -->
+    <!-- Styles used only on the About page (team grid) -->
     <style>
+      /* Team toggle + portfolio cards */
       .team-toggle-wrap {
         margin: 1rem 0 1.2rem;
       }
       .team-grid[hidden] {
         display: none;
       }
-      .team-name-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      /* row 1: two wide cards; row 2: three equal cards */
+      .team-portfolio-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 0.8rem;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.25rem;
+        margin-top: 0.5rem;
       }
-      .team-name-btn {
+      .team-card:nth-child(1),
+      .team-card:nth-child(2) {
+        grid-column: span 3;
+      }
+      .team-card:nth-child(3),
+      .team-card:nth-child(4),
+      .team-card:nth-child(5) {
+        grid-column: span 2;
+      }
+      @media (max-width: 720px) {
+        .team-portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-card:nth-child(n) {
+          grid-column: span 1;
+        }
+      }
+      .team-card {
+        background: #ffffff;
+        border: 1px solid #d7e3cf;
+        border-radius: 0.65rem;
+        padding: 1rem 1rem 1.1rem;
+        box-shadow: 0 4px 14px rgba(27, 94, 32, 0.08);
+      }
+      .team-card-photo {
         width: 100%;
-        text-align: left;
+        max-height: 280px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        display: block;
+        margin-bottom: 0.75rem;
+        border: 1px solid #cfdcc4;
       }
-      .team-member-modal-image {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        max-height: none;
-        object-fit: contain;
-        border-radius: 0.6rem;
-        margin-bottom: 0.8rem;
+      .team-card h3 {
+        margin: 0 0 0.45rem 0;
+        font-size: 1.15rem;
+        color: #14532d;
+      }
+      .team-card p {
+        margin: 0.35rem 0 0;
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+      .team-card .interest-line {
+        margin-top: 0.5rem;
+        color: #2f4a30;
       }
     </style>
   </head>
@@ -79,70 +114,89 @@
           aria-expanded="false"
           aria-controls="teamMembersSection"
         >
-          Show Our Team Members
+          Show Team Members
         </button>
       </div>
 
-      <!-- Click name to open popup -->
-      <!-- Hidden at first -->
+      <!-- Everyone shows here with photo + text (no extra buttons) -->
       <section id="teamMembersSection" class="grid team-grid" hidden>
-        <ul class="team-name-list">
-          <li>
-            <button
-              type="button"
-              class="btn team-name-btn member-a team-member-name-btn"
-              data-name="Anuj Thapa"
-              data-photo="../images/anuj.png?auto=format"
-              data-about="Skills: HTML5, CSS3, JavaScript, documentation, research, presentation, teamwork. Interest: UI design for sustainability platforms in Pokhara."
-            >
-              Anuj Thapa
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="btn team-name-btn member-b team-member-name-btn"
-              data-name="Kusum Rana Magar"
-              data-photo="../images/kusum.png?auto=format"
-              data-about="Skills: HTML5, CSS3, JavaScript, report writing, test cases, formatting, documentation. Interest: quality assurance and usability reporting."
-            >
-              Kusum Rana Magar
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="btn team-name-btn member-c team-member-name-btn"
-              data-name="Asal Khatrai"
-              data-photo="../images/asal.png?auto=format"
-              data-about="Skills: HTML5, CSS3, JavaScript, product copywriting, research analysis, documentation. Interest: eco-branding and market trends in Pokhara valley."
-            >
-              Asal Khatri
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="btn team-name-btn member-d team-member-name-btn"
-              data-name="Sushant Chhetri"
-              data-photo="../images/sushant.jpeg?auto=format"
-              data-about="Skills: HTML5, CSS3, JavaScript, validation logic, user interaction scripts, documentation. Interest: functional UI and accessible web components."
-            >
-              Sushant Chhetri
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="btn team-name-btn member-e team-member-name-btn"
-              data-name="Samir Thapa Magar"
-              data-photo="../images/samir.jpg?auto=format"
-              data-about="Skills: HTML5, CSS3, wireframing, responsive structure, testing, documentation. Interest: design systems and user-focused pages."
-            >
-              Samir Thapa Magar
-            </button>
-          </li>
-        </ul>
+        <div class="team-portfolio-grid">
+          <article class="team-card">
+            <img
+              class="team-card-photo"
+              src="../images/samir.jpg?auto=format"
+              alt="Photo of Samir Thapa Magar"
+            />
+            <h3>Samir Thapa Magar</h3>
+            <p>
+              <strong>Skills:</strong> HTML5, CSS3, wireframing, responsive structure, testing,
+              documentation.
+            </p>
+            <p class="interest-line">
+              <strong>Interest:</strong> design systems and user-focused pages.
+            </p>
+          </article>
+          <article class="team-card">
+            <img
+              class="team-card-photo"
+              src="../images/sushant.jpeg?auto=format"
+              alt="Photo of Sushant Chhetri"
+            />
+            <h3>Sushant Chhetri</h3>
+            <p>
+              <strong>Skills:</strong> HTML5, CSS3, JavaScript, validation logic, user
+              interaction scripts, documentation.
+            </p>
+            <p class="interest-line">
+              <strong>Interest:</strong> functional UI and accessible web components.
+            </p>
+          </article>
+          <article class="team-card">
+            <img
+              class="team-card-photo"
+              src="../images/anuj.png?auto=format"
+              alt="Photo of Anuj Thapa"
+            />
+            <h3>Anuj Thapa</h3>
+            <p>
+              <strong>Skills:</strong> HTML5, CSS3, JavaScript, documentation, research,
+              presentation, teamwork.
+            </p>
+            <p class="interest-line">
+              <strong>Interest:</strong> UI design for sustainability platforms in Pokhara.
+            </p>
+          </article>
+          <article class="team-card">
+            <img
+              class="team-card-photo"
+              src="../images/kusum.png?auto=format"
+              alt="Photo of Kusum Rana Magar"
+            />
+            <h3>Kusum Rana Magar</h3>
+            <p>
+              <strong>Skills:</strong> HTML5, CSS3, JavaScript, report writing, test cases,
+              formatting, documentation.
+            </p>
+            <p class="interest-line">
+              <strong>Interest:</strong> quality assurance and usability reporting.
+            </p>
+          </article>
+          <article class="team-card">
+            <img
+              class="team-card-photo"
+              src="../images/asal.png?auto=format"
+              alt="Photo of Asal Khatri"
+            />
+            <h3>Asal Khatri</h3>
+            <p>
+              <strong>Skills:</strong> HTML5, CSS3, JavaScript, product copywriting, research
+              analysis, documentation.
+            </p>
+            <p class="interest-line">
+              <strong>Interest:</strong> eco-branding and market trends in Pokhara valley.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="section">
@@ -207,29 +261,6 @@
       </div>
     </aside>
 
-    <!-- Team popup -->
-    <div id="teamMemberModal" class="modal hidden" aria-hidden="true">
-      <div class="modal-content">
-        <button
-          id="teamMemberModalClose"
-          class="modal-close"
-          type="button"
-          aria-label="Close team member popup"
-        >
-          ×
-        </button>
-        <img
-          id="teamMemberModalImage"
-          class="team-member-modal-image"
-          src=""
-          alt="Team member photo"
-        />
-        <h3 id="teamMemberModalName"></h3>
-        <p id="teamMemberModalAbout"></p>
-      </div>
-    </div>
-
-    <!-- Beginner note: all JavaScript is in external file (no inline JS). -->
     <script src="../js/script.js"></script>
   </body>
 </html>
