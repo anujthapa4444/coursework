@@ -1,31 +1,29 @@
-// DOM helper
+// helper so i dont type document.getElementById every time
 function get(id) {
   return document.getElementById(id);
 }
 
-// Browser alert
+// Show browser alert
 function popup(msg) {
   alert(msg);
 }
 
-// Toggle visibility
+// Show element on the page
 function show(el) {
   if (!el) return;
   el.classList.remove("hidden");
   el.setAttribute("aria-hidden", "false");
 }
 
-// Hide element
+// Hide element from the page
 function hide(el) {
   if (!el) return;
   el.classList.add("hidden");
   el.setAttribute("aria-hidden", "true");
 }
-
-
 // ===== PRODUCT POPUP =====
 
-// Product details popup
+// Show product details popup
 function showProduct(card) {
   let modal = get("productModal");
   let img = get("modalProductImage");
@@ -38,28 +36,28 @@ function showProduct(card) {
   let cardImg = card.querySelector("img");
   let cardName = card.querySelector("h3");
   let cardPrice = card.querySelector("strong");
-  let cardDesc = card.querySelectorAll("p");
+  let cardParagraphs = card.querySelectorAll("p");
 
-  // Extract description
+  // Get description text from the card
   let descText = "";
-  if (cardDesc.length > 1) {
-    descText = cardDesc[1].textContent.trim();
+  if (cardParagraphs.length > 1) {
+    descText = cardParagraphs[1].textContent.trim();
   }
 
-  // Remove price symbols
+  // Keep only numbers for the price
   let priceNum = "";
   if (cardPrice) {
     priceNum = cardPrice.textContent.replace(/[^0-9.]/g, "");
   }
 
-  // Populate modal fields
+  // Show data in the popup
   img.src = cardImg ? cardImg.src : "";
   img.alt = cardImg ? cardImg.alt : "Product";
   name.textContent = cardName ? cardName.textContent : "";
   price.textContent = cardPrice ? "Price: " + cardPrice.textContent : "";
   desc.textContent = descText;
 
-  // Store for cart
+  // Save product info for cart
   modal.dataset.productName = cardName ? cardName.textContent : "";
   modal.dataset.productPrice = priceNum;
 
@@ -165,7 +163,7 @@ function attachBlogPopups() {
   });
 }
 
-// Close all modals
+// Close popups when the user presses Escape
 function attachEscape() {
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
@@ -176,34 +174,33 @@ function attachEscape() {
   });
 }
 
+// my shopping cart list (i use var because we learned it in class)
+var cart = [];
 
-// Shopping cart storage
-let cart = [];
-
-// Retrieve cart
 function getCart() {
   return cart;
 }
 
-// Update cart
 function saveCart(items) {
   cart = items;
 }
 
-// Empty cart
 function clearCart() {
   saveCart([]);
 }
 
-// Find item index
+// loop to find if we already have this plant name
 function findItem(name) {
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].name === name) return i;
+  var i;
+  for (i = 0; i < cart.length; i = i + 1) {
+    if (cart[i].name === name) {
+      return i;
+    }
   }
   return -1;
 }
 
-// Calculate totals
+// Calculate cart totals
 function getTotal(items) {
   let total = { price: 0, qty: 0 };
   for (let i = 0; i < items.length; i++) {
@@ -213,10 +210,9 @@ function getTotal(items) {
   return total;
 }
 
-// Add item
 function addCart(name, price) {
-  let c = getCart();
-  let idx = findItem(name);
+  var c = getCart();
+  var idx = findItem(name);
 
   if (idx === -1) {
     c.push({ name: name, price: Number(price), qty: 1 });
@@ -231,12 +227,13 @@ function addCart(name, price) {
   drawDrawer();
 }
 
-// Adjust quantity
 function changeQty(name, change) {
-  let c = getCart();
-  let idx = findItem(name);
+  var c = getCart();
+  var idx = findItem(name);
 
-  if (idx === -1) return;
+  if (idx === -1) {
+    return;
+  }
 
   c[idx].qty = c[idx].qty + change;
 
@@ -369,50 +366,112 @@ function attachQtyBtns() {
 
 // ===== CART BUTTONS =====
 
-// Slide drawer in
+// show the cart panel from the right
 function openDrawer() {
-  let drawer = get("cartDrawer");
-  let backdrop = get("cartDrawerBackdrop");
-  if (!drawer || !backdrop) return;
+  var drawer = get("cartDrawer");
+  var backdrop = get("cartDrawerBackdrop");
+  // #region agent log
+  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
+    body: JSON.stringify({
+      sessionId: "fe1c9c",
+      runId: "repro-1",
+      hypothesisId: "H1",
+      location: "script.js:openDrawer",
+      message: "openDrawer entry",
+      data: { hasDrawer: !!drawer, hasBackdrop: !!backdrop },
+      timestamp: Date.now(),
+    }),
+  }).catch(function () {});
+  // #endregion
+  if (!drawer || !backdrop) {
+    return;
+  }
 
   drawDrawer();
   drawer.classList.add("open");
   backdrop.classList.add("visible");
 }
 
-// Slide drawer out
+// hide cart panel
 function closeDrawer() {
-  let drawer = get("cartDrawer");
-  let backdrop = get("cartDrawerBackdrop");
-  if (!drawer || !backdrop) return;
+  var drawer = get("cartDrawer");
+  var backdrop = get("cartDrawerBackdrop");
+  if (!drawer || !backdrop) {
+    return;
+  }
 
   drawer.classList.remove("open");
   backdrop.classList.remove("visible");
 }
 
-// Navigate to products
+// go shop if empty cart
 function goShop() {
-  let path = window.location.pathname;
+  var path = window.location.pathname;
+  var norm = path.split("\\").join("/");
+  // #region agent log
+  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
+    body: JSON.stringify({
+      sessionId: "fe1c9c",
+      runId: "repro-1",
+      hypothesisId: "H2",
+      location: "script.js:goShop",
+      message: "goShop path",
+      data: {
+        rawPath: path,
+        normPath: norm,
+        inPages: norm.indexOf("/pages/") !== -1,
+        onProducts: norm.indexOf("products.html") !== -1,
+      },
+      timestamp: Date.now(),
+    }),
+  }).catch(function () {});
+  // #endregion
   if (path.indexOf("products.html") !== -1) {
     closeDrawer();
     return;
   }
-  if (path.includes('/pages/')) {
-    window.location.href = 'products.html';
+  if (path.indexOf("/pages/") !== -1) {
+    window.location.href = "products.html";
   } else {
-    window.location.href = 'pages/products.html';
+    window.location.href = "pages/products.html";
   }
 }
 
-// Cart UI listeners
 function attachCartBtns() {
-  let openBtn = get("openCartBtn");
-  let closeBtn = get("closeCartDrawer");
-  let backdrop = get("cartDrawerBackdrop");
-  let clearBtn = get("clearDrawerCartBtn");
-  let shopBtn = get("shopNowBtn");
+  var openBtn = get("openCartBtn");
+  var closeBtn = get("closeCartDrawer");
+  var backdrop = get("cartDrawerBackdrop");
+  var clearBtn = get("clearDrawerCartBtn");
+  var shopBtn = get("shopNowBtn");
+  // #region agent log
+  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
+    body: JSON.stringify({
+      sessionId: "fe1c9c",
+      runId: "repro-1",
+      hypothesisId: "H3",
+      location: "script.js:attachCartBtns",
+      message: "cart DOM refs",
+      data: {
+        hasOpen: !!openBtn,
+        hasClose: !!closeBtn,
+        hasBackdrop: !!backdrop,
+        hasClear: !!clearBtn,
+        hasShop: !!shopBtn,
+      },
+      timestamp: Date.now(),
+    }),
+  }).catch(function () {});
+  // #endregion
 
-  if (openBtn) openBtn.addEventListener("click", openDrawer);
+  if (openBtn) {
+    openBtn.addEventListener("click", openDrawer);
+  }
   if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
   if (backdrop) backdrop.addEventListener("click", closeDrawer);
 
@@ -602,7 +661,7 @@ function attachReadMore() {
   });
 }
 
-// Console output
+// Print messages in the browser console
 function alertMsg(msg) {
   console.log(msg);
 }
@@ -610,7 +669,7 @@ function alertMsg(msg) {
 
 // ===== START =====
 
-// Initialize page
+// Start the page
 function start() {
   showDate();
 

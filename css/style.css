@@ -1,40 +1,29 @@
 /* Main CSS file. */
 
 /* Color values. */
-:root {
-  --green-dark: #1b5e20;
-  --green-main: #2e7d32;
-  --green-light: #66bb6a;
-  --sky-lake: #dff3ff;
-  --cream: #f5f8ef;
-  --text-dark: #1f2937;
-  --card-bg: #ffffff;
-}
-
-/* Reset and default page style. */
+/* Main colors for the page */
+/* Beginner-friendly CSS without custom variables */
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: "Times New Roman", Times, serif;
-  color: var(--text-dark);
-  background: linear-gradient(180deg,
-      var(--card-bg) 0%,
-      var(--cream) 45%,
-      var(--sky-lake) 100%);
+  color: #1f2937;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f8ef 45%, #dff3ff 100%);
 }
 
 /* Shared page container. */
 .container {
-  width: min(1100px, 92%);
+  width: 92%;
+  max-width: 1100px;
   margin: auto;
 }
 
 /* Top menu styles. */
 .navbar {
-  background: var(--green-dark);
-  color: var(--card-bg);
+  background: #1b5e20;
+  color: #ffffff;
 }
 
 .nav-inner {
@@ -57,27 +46,36 @@ body {
 }
 
 .nav-links a {
-  color: var(--card-bg);
+  color: #ffffff;
   text-decoration: none;
   padding: 0.45rem 0.7rem;
   border-radius: 0.4rem;
 }
 
 
+/* Text cart button in the green bar */
 .cart-toggle {
+  display: flex;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
-  border: none;
-  background: var(--green-dark);
-  color: var(--card-bg);
-  font-size: 1.35rem;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: 0.35rem 0.85rem;
+  border: 2px solid #ffffff;
+  border-radius: 0.35rem;
+  background: #1b5e20;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
 }
 
 .cart-drawer-backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
@@ -211,7 +209,7 @@ body {
 }
 
 .card {
-  background: var(--card-bg);
+  background: #ffffff;
   border-radius: 0.7rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
   padding: 1rem;
@@ -235,7 +233,10 @@ body {
 
 .modal {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
@@ -284,7 +285,7 @@ body {
 /* Button styles. */
 .btn {
   border: none;
-  background: var(--green-main);
+  background: #2e7d32;
   color: #fff;
   padding: 0.6rem 0.9rem;
   border-radius: 0.45rem;
@@ -292,7 +293,7 @@ body {
 }
 
 .btn:hover {
-  background: var(--green-dark);
+  background: #1b5e20;
 }
 
 /* Full-width clear button. */
@@ -301,7 +302,7 @@ body {
 }
 
 .btn-secondary {
-  background: var(--green-dark);
+  background: #1b5e20;
 }
 
 .qty-btn {
