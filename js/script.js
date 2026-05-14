@@ -25,27 +25,27 @@ function hide(el) {
 
 // Show product details popup
 function showProduct(card) {
-  let modal = get("productModal");
-  let img = get("modalProductImage");
-  let name = get("modalProductName");
-  let price = get("modalProductPrice");
-  let desc = get("modalProductDescription");
+  var modal = get("productModal");
+  var img = get("modalProductImage");
+  var name = get("modalProductName");
+  var price = get("modalProductPrice");
+  var desc = get("modalProductDescription");
 
   if (!modal || !img || !name || !price || !desc) return;
 
-  let cardImg = card.querySelector("img");
-  let cardName = card.querySelector("h3");
-  let cardPrice = card.querySelector("strong");
-  let cardParagraphs = card.querySelectorAll("p");
+  var cardImg = card.querySelector("img");
+  var cardName = card.querySelector("h3");
+  var cardPrice = card.querySelector("strong");
+  var cardParagraphs = card.querySelectorAll("p");
 
   // Get description text from the card
-  let descText = "";
+  var descText = "";
   if (cardParagraphs.length > 1) {
     descText = cardParagraphs[1].textContent.trim();
   }
 
   // Keep only numbers for the price
-  let priceNum = "";
+  var priceNum = "";
   if (cardPrice) {
     priceNum = cardPrice.textContent.replace(/[^0-9.]/g, "");
   }
@@ -71,15 +71,15 @@ function hideProduct() {
 
 // Attach modal listeners
 function attachProductPopups() {
-  let cards = document.querySelectorAll(".product-card");
-  let modal = get("productModal");
-  let closeBtn = get("productModalClose");
+  var cards = document.querySelectorAll(".product-card");
+  var modal = get("productModal");
+  var closeBtn = get("productModalClose");
 
   if (!cards.length || !modal || !closeBtn) return;
 
-  for (let i = 0; i < cards.length; i++) {
+  for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function (e) {
-      let btn = e.target.closest(".btn");
+      var btn = e.target.closest(".btn");
       if (btn) return;
       showProduct(this);
     });
@@ -93,14 +93,14 @@ function attachProductPopups() {
 
 // Modal add button
 function attachProductCartBtn() {
-  let btn = get("modalAddToCartBtn");
-  let modal = get("productModal");
+  var btn = get("modalAddToCartBtn");
+  var modal = get("productModal");
 
   if (!btn || !modal) return;
 
   btn.addEventListener("click", function () {
-    let name = modal.dataset.productName;
-    let price = modal.dataset.productPrice;
+    var name = modal.dataset.productName;
+    var price = modal.dataset.productPrice;
     if (name && price) {
       addCart(name, price);
     }
@@ -112,20 +112,20 @@ function attachProductCartBtn() {
 
 // Blog modal popup
 function showBlog(card) {
-  let modal = get("blogModal");
-  let img = get("modalBlogImage");
-  let topic = get("modalBlogTopic");
-  let title = get("modalBlogTitle");
-  let summary = get("modalBlogSummary");
-  let detail = get("modalBlogDetail");
-  let tip = get("modalBlogTip");
+  var modal = get("blogModal");
+  var img = get("modalBlogImage");
+  var topic = get("modalBlogTopic");
+  var title = get("modalBlogTitle");
+  var summary = get("modalBlogSummary");
+  var detail = get("modalBlogDetail");
+  var tip = get("modalBlogTip");
 
   if (!modal || !img || !topic || !title || !summary || !detail || !tip) return;
 
-  let cardImg = card.querySelector("img");
-  let cardTopic = card.querySelector(".badge");
-  let cardTitle = card.querySelector("h3");
-  let cardSummary = card.querySelector("p");
+  var cardImg = card.querySelector("img");
+  var cardTopic = card.querySelector(".badge");
+  var cardTitle = card.querySelector("h3");
+  var cardSummary = card.querySelector("p");
 
   img.src = cardImg ? cardImg.src : "";
   img.alt = cardImg ? cardImg.alt : "Blog";
@@ -145,13 +145,13 @@ function hideBlog() {
 
 // Attach blog listeners
 function attachBlogPopups() {
-  let cards = document.querySelectorAll(".blog-topic");
-  let modal = get("blogModal");
-  let closeBtn = get("blogModalClose");
+  var cards = document.querySelectorAll(".blog-topic");
+  var modal = get("blogModal");
+  var closeBtn = get("blogModalClose");
 
   if (!cards.length || !modal || !closeBtn) return;
 
-  for (let i = 0; i < cards.length; i++) {
+  for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function () {
       showBlog(this);
     });
@@ -202,8 +202,8 @@ function findItem(name) {
 
 // Calculate cart totals
 function getTotal(items) {
-  let total = { price: 0, qty: 0 };
-  for (let i = 0; i < items.length; i++) {
+  var total = { price: 0, qty: 0 };
+  for (var i = 0; i < items.length; i++) {
     total.price = total.price + (items[i].price * items[i].qty);
     total.qty = total.qty + items[i].qty;
   }
@@ -252,13 +252,13 @@ function changeQty(name, change) {
 
 // Render main table
 function drawCart() {
-  let body = get("cartBody") || get("estimateBody");
-  let totalEl = get("cartTotal") || get("estimateTotal");
-  let countEl = get("cartItems") || get("estimateItems");
+  var body = get("cartBody") || get("estimateBody");
+  var totalEl = get("cartTotal") || get("estimateTotal");
+  var countEl = get("cartItems") || get("estimateItems");
 
   if (!body || !totalEl || !countEl) return;
 
-  let c = getCart();
+  var c = getCart();
   body.innerHTML = "";
 
   if (c.length === 0) {
@@ -268,26 +268,26 @@ function drawCart() {
     return;
   }
 
-  for (let i = 0; i < c.length; i++) {
-    let item = c[i];
-    let lineTotal = item.price * item.qty;
+  for (var i = 0; i < c.length; i++) {
+    var item = c[i];
+    var lineTotal = item.price * item.qty;
     body.innerHTML += "<tr><td>" + item.name + "</td><td>NPR " + item.price + "</td><td>" + item.qty + "</td><td>NPR " + lineTotal + "</td></tr>";
   }
 
-  let t = getTotal(c);
+  var t = getTotal(c);
   totalEl.textContent = "NPR " + t.price;
   countEl.textContent = String(t.qty);
 }
 
 // Render sidebar
 function drawSidebar() {
-  let body = get("sidebarCartBody");
-  let totalEl = get("sidebarCartTotal");
-  let countEl = get("sidebarCartItems");
+  var body = get("sidebarCartBody");
+  var totalEl = get("sidebarCartTotal");
+  var countEl = get("sidebarCartItems");
 
   if (!body || !totalEl || !countEl) return;
 
-  let c = getCart();
+  var c = getCart();
   body.innerHTML = "";
 
   if (c.length === 0) {
@@ -297,26 +297,26 @@ function drawSidebar() {
     return;
   }
 
-  for (let i = 0; i < c.length; i++) {
+  for (var i = 0; i < c.length; i++) {
     body.innerHTML += "<tr><td>" + c[i].name + "</td><td>" + c[i].qty + "</td></tr>";
   }
 
-  let t = getTotal(c);
+  var t = getTotal(c);
   totalEl.textContent = "NPR " + t.price;
   countEl.textContent = String(t.qty);
 }
 
 // Render drawer panel
 function drawDrawer() {
-  let body = get("drawerCartBody");
-  let totalEl = get("drawerCartTotal");
-  let countEl = get("drawerCartItems");
-  let shopBtn = get("shopNowBtn");
-  let clearBtn = get("clearDrawerCartBtn");
+  var body = get("drawerCartBody");
+  var totalEl = get("drawerCartTotal");
+  var countEl = get("drawerCartItems");
+  var shopBtn = get("shopNowBtn");
+  var clearBtn = get("clearDrawerCartBtn");
 
   if (!body || !totalEl || !countEl) return;
 
-  let c = getCart();
+  var c = getCart();
   body.innerHTML = "";
 
   if (c.length === 0) {
@@ -331,12 +331,12 @@ function drawDrawer() {
   if (shopBtn) shopBtn.style.display = "none";
   if (clearBtn) clearBtn.style.display = "block";
 
-  for (let i = 0; i < c.length; i++) {
-    let item = c[i];
+  for (var i = 0; i < c.length; i++) {
+    var item = c[i];
     body.innerHTML += "<tr><td>" + item.name + "</td><td style='text-align: center;'><button class='qty-btn qty-minus' data-item='" + item.name + "'>−</button> " + item.qty + " <button class='qty-btn qty-plus' data-item='" + item.name + "'>+</button></td></tr>";
   }
 
-  let t = getTotal(c);
+  var t = getTotal(c);
   totalEl.textContent = "NPR " + t.price;
   countEl.textContent = String(t.qty);
 
@@ -345,19 +345,19 @@ function drawDrawer() {
 
 // Qty +/- listeners
 function attachQtyBtns() {
-  let plus = document.querySelectorAll(".qty-plus");
-  let minus = document.querySelectorAll(".qty-minus");
+  var plus = document.querySelectorAll(".qty-plus");
+  var minus = document.querySelectorAll(".qty-minus");
 
-  for (let i = 0; i < plus.length; i++) {
+  for (var i = 0; i < plus.length; i++) {
     plus[i].addEventListener("click", function () {
-      let name = this.getAttribute("data-item");
+      var name = this.getAttribute("data-item");
       changeQty(name, 1);
     });
   }
 
-  for (let i = 0; i < minus.length; i++) {
+  for (var i = 0; i < minus.length; i++) {
     minus[i].addEventListener("click", function () {
-      let name = this.getAttribute("data-item");
+      var name = this.getAttribute("data-item");
       changeQty(name, -1);
     });
   }
@@ -446,13 +446,13 @@ function attachCartBtns() {
 
 // Product add buttons
 function attachAddBtns() {
-  let btns = document.querySelectorAll(".add-to-cart-btn");
+  var btns = document.querySelectorAll(".add-to-cart-btn");
   if (!btns.length) return;
 
-  for (let i = 0; i < btns.length; i++) {
+  for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
-      let name = this.getAttribute("data-name");
-      let price = this.getAttribute("data-price");
+      var name = this.getAttribute("data-name");
+      var price = this.getAttribute("data-price");
       addCart(name, price);
     });
   }
@@ -460,8 +460,8 @@ function attachAddBtns() {
 
 // Clear page buttons
 function attachClearBtns() {
-  let btn1 = get("clearCartBtn") || get("clearEstimateBtn");
-  let btn2 = get("clearSidebarCartBtn");
+  var btn1 = get("clearCartBtn") || get("clearEstimateBtn");
+  var btn2 = get("clearSidebarCartBtn");
 
   if (btn1) {
     btn1.addEventListener("click", function () {
@@ -485,22 +485,22 @@ function attachClearBtns() {
 
 // Display current date
 function showDate() {
-  let el = get("todayDate");
+  var el = get("todayDate");
   if (!el) return;
   el.textContent = new Date().toDateString();
 }
 
 // Product category filter
 function attachFilter() {
-  let filter = get("productFilter");
+  var filter = get("productFilter");
   if (!filter) return;
 
   filter.addEventListener("change", function () {
-    let selected = filter.value;
-    let cards = document.querySelectorAll(".product-card");
+    var selected = filter.value;
+    var cards = document.querySelectorAll(".product-card");
 
-    for (let i = 0; i < cards.length; i++) {
-      let cat = cards[i].getAttribute("data-category");
+    for (var i = 0; i < cards.length; i++) {
+      var cat = cards[i].getAttribute("data-category");
       if (selected === "all" || cat === selected) {
         cards[i].style.display = "block";
       } else {
@@ -515,13 +515,13 @@ function attachFilter() {
 
 // Team collapse toggle
 function attachTeamToggle() {
-  let btn = get("teamToggleBtn");
-  let section = get("teamMembersSection");
+  var btn = get("teamToggleBtn");
+  var section = get("teamMembersSection");
 
   if (!btn || !section) return;
 
   btn.addEventListener("click", function () {
-    let hidden = section.hasAttribute("hidden");
+    var hidden = section.hasAttribute("hidden");
 
     if (hidden) {
       section.removeAttribute("hidden");
@@ -542,23 +542,23 @@ function hideTeam() {
 
 // Member profile modal
 function attachTeamPopups() {
-  let btns = document.querySelectorAll(".team-member-name-btn");
-  let modal = get("teamMemberModal");
-  let closeBtn = get("teamMemberModalClose");
-  let img = get("teamMemberModalImage");
-  let name = get("teamMemberModalName");
-  let about = get("teamMemberModalAbout");
+  var btns = document.querySelectorAll(".team-member-name-btn");
+  var modal = get("teamMemberModal");
+  var closeBtn = get("teamMemberModalClose");
+  var img = get("teamMemberModalImage");
+  var name = get("teamMemberModalName");
+  var about = get("teamMemberModalAbout");
 
   if (!btns.length || !modal || !closeBtn || !img || !name || !about) return;
 
-  for (let i = 0; i < btns.length; i++) {
+  for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
-      let memberName = this.getAttribute("data-name") || "";
-      let memberAbout = this.getAttribute("data-about") || "";
-      let memberPhoto = this.getAttribute("data-photo") || "";
+      var memberName = this.getAttribute("data-name") || "";
+      var memberAbout = this.getAttribute("data-about") || "";
+      var memberPhoto = this.getAttribute("data-photo") || "";
 
       name.textContent = memberName;
-      let skills = memberAbout.split(' Interest:')[0];
+      var skills = memberAbout.split(' Interest:')[0];
       about.textContent = skills;
       img.src = memberPhoto;
       img.alt = memberName;
@@ -575,17 +575,17 @@ function attachTeamPopups() {
 
 // Auto-rotate hero
 function startSlider() {
-  let hero = document.querySelector(".hero");
+  var hero = document.querySelector(".hero");
   if (!hero) return;
 
-  let pics = [
+  var pics = [
     "images/hero-bg.png",
     "images/home-bg-2.png",
     "images/home-bg-3.png",
     "images/home-bg-4.png"
   ];
 
-  let idx = 0;
+  var idx = 0;
 
   setInterval(function () {
     idx = idx + 1;
@@ -598,9 +598,9 @@ function startSlider() {
 
 // Expand/collapse text
 function attachReadMore() {
-  let readBtn = get("researchReadMoreBtn");
-  let lessBtn = get("researchShowLessBtn");
-  let section = get("researchSummarySection");
+  var readBtn = get("researchReadMoreBtn");
+  var lessBtn = get("researchShowLessBtn");
+  var section = get("researchSummarySection");
 
   if (!readBtn || !lessBtn || !section) return;
 
@@ -648,13 +648,13 @@ function start() {
   // Features
   attachFilter();
 
-  let welcomeBtn = get("welcomeBtn");
+  var welcomeBtn = get("welcomeBtn");
   if (welcomeBtn) {
     welcomeBtn.addEventListener("click", function () {
       popup("Welcome!");
     });
   }
-  let submitBtn = get("submit");
+  var submitBtn = get("submit");
   if(submitBtn) {
     submitBtn.addEventListener("click", function () {
       popup("Form submitted!");
