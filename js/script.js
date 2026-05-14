@@ -370,21 +370,6 @@ function attachQtyBtns() {
 function openDrawer() {
   var drawer = get("cartDrawer");
   var backdrop = get("cartDrawerBackdrop");
-  // #region agent log
-  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
-    body: JSON.stringify({
-      sessionId: "fe1c9c",
-      runId: "repro-1",
-      hypothesisId: "H1",
-      location: "script.js:openDrawer",
-      message: "openDrawer entry",
-      data: { hasDrawer: !!drawer, hasBackdrop: !!backdrop },
-      timestamp: Date.now(),
-    }),
-  }).catch(function () {});
-  // #endregion
   if (!drawer || !backdrop) {
     return;
   }
@@ -409,27 +394,6 @@ function closeDrawer() {
 // go shop if empty cart
 function goShop() {
   var path = window.location.pathname;
-  var norm = path.split("\\").join("/");
-  // #region agent log
-  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
-    body: JSON.stringify({
-      sessionId: "fe1c9c",
-      runId: "repro-1",
-      hypothesisId: "H2",
-      location: "script.js:goShop",
-      message: "goShop path",
-      data: {
-        rawPath: path,
-        normPath: norm,
-        inPages: norm.indexOf("/pages/") !== -1,
-        onProducts: norm.indexOf("products.html") !== -1,
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(function () {});
-  // #endregion
   if (path.indexOf("products.html") !== -1) {
     closeDrawer();
     return;
@@ -447,27 +411,6 @@ function attachCartBtns() {
   var backdrop = get("cartDrawerBackdrop");
   var clearBtn = get("clearDrawerCartBtn");
   var shopBtn = get("shopNowBtn");
-  // #region agent log
-  fetch("http://127.0.0.1:7723/ingest/0a5c7fdb-1caf-463b-9ecd-bbc02904091d", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "fe1c9c" },
-    body: JSON.stringify({
-      sessionId: "fe1c9c",
-      runId: "repro-1",
-      hypothesisId: "H3",
-      location: "script.js:attachCartBtns",
-      message: "cart DOM refs",
-      data: {
-        hasOpen: !!openBtn,
-        hasClose: !!closeBtn,
-        hasBackdrop: !!backdrop,
-        hasClear: !!clearBtn,
-        hasShop: !!shopBtn,
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(function () {});
-  // #endregion
 
   if (openBtn) {
     openBtn.addEventListener("click", openDrawer);
