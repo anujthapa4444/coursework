@@ -194,7 +194,6 @@ function attachEscape() {
     if (e.key === "Escape") {
       hideProduct();
       hideBlog();
-      hideTeam();
     }
   });
 }
@@ -249,8 +248,6 @@ function addCart(name, price) {
 
   saveCart(c);
   alertMsg(name + " added!");
-  drawCart();
-  drawSidebar();
   drawDrawer();
 }
 
@@ -269,8 +266,6 @@ function changeQty(name, change) {
   }
 
   saveCart(c);
-  drawCart();
-  drawSidebar();
   drawDrawer();
 }
 
@@ -278,75 +273,7 @@ function changeQty(name, change) {
 // Shopping cart — update tables on the page
 // ---------------------------------------------------------------------------
 
-/** Main cart / estimate table (only runs if those elements exist). */
-function drawCart() {
-  var body = get("cartBody") || get("estimateBody");
-  var totalEl = get("cartTotal") || get("estimateTotal");
-  var countEl = get("cartItems") || get("estimateItems");
 
-  if (!body || !totalEl || !countEl) {
-    return;
-  }
-
-  var c = getCart();
-  body.innerHTML = "";
-
-  if (c.length === 0) {
-    body.innerHTML = '<tr><td colspan="4">Cart is empty.</td></tr>';
-    totalEl.textContent = "NPR 0";
-    countEl.textContent = "0";
-    return;
-  }
-
-  for (var i = 0; i < c.length; i++) {
-    var item = c[i];
-    var lineTotal = item.price * item.qty;
-    body.innerHTML +=
-      "<tr><td>" +
-      item.name +
-      "</td><td>NPR " +
-      item.price +
-      "</td><td>" +
-      item.qty +
-      "</td><td>NPR " +
-      lineTotal +
-      "</td></tr>";
-  }
-
-  var t = getTotal(c);
-  totalEl.textContent = "NPR " + t.price;
-  countEl.textContent = String(t.qty);
-}
-
-/** Sidebar mini-cart (Products page layout). */
-function drawSidebar() {
-  var body = get("sidebarCartBody");
-  var totalEl = get("sidebarCartTotal");
-  var countEl = get("sidebarCartItems");
-
-  if (!body || !totalEl || !countEl) {
-    return;
-  }
-
-  var c = getCart();
-  body.innerHTML = "";
-
-  if (c.length === 0) {
-    body.innerHTML = '<tr><td colspan="2">Cart empty</td></tr>';
-    totalEl.textContent = "NPR 0";
-    countEl.textContent = "0";
-    return;
-  }
-
-  for (var i = 0; i < c.length; i++) {
-    body.innerHTML +=
-      "<tr><td>" + c[i].name + "</td><td>" + c[i].qty + "</td></tr>";
-  }
-
-  var t = getTotal(c);
-  totalEl.textContent = "NPR " + t.price;
-  countEl.textContent = String(t.qty);
-}
 
 /** Sliding cart drawer (all pages). */
 function drawDrawer() {
@@ -493,8 +420,6 @@ function attachCartBtns() {
   if (clearBtn) {
     clearBtn.addEventListener("click", function () {
       clearCart();
-      drawCart();
-      drawSidebar();
       drawDrawer();
       alertMsg("Cart cleared!");
     });
@@ -520,26 +445,7 @@ function attachAddBtns() {
   }
 }
 
-function attachClearBtns() {
-  var btn1 = get("clearCartBtn") || get("clearEstimateBtn");
-  var btn2 = get("clearSidebarCartBtn");
 
-  if (btn1) {
-    btn1.addEventListener("click", function () {
-      clearCart();
-      drawCart();
-      alertMsg("Cart cleared!");
-    });
-  }
-
-  if (btn2) {
-    btn2.addEventListener("click", function () {
-      clearCart();
-      drawSidebar();
-      alertMsg("Cart cleared!");
-    });
-  }
-}
 
 // ---------------------------------------------------------------------------
 // Footer date, product filter, team, hero, research “read more”
@@ -599,46 +505,7 @@ function attachTeamToggle() {
   });
 }
 
-/** Legacy team-by-name modal (only runs if those elements still exist on a page). */
-function hideTeam() {
-  hide(get("teamMemberModal"));
-}
 
-function attachTeamPopups() {
-  var btns = document.querySelectorAll(".team-member-name-btn");
-  var modal = get("teamMemberModal");
-  var closeBtn = get("teamMemberModalClose");
-  var img = get("teamMemberModalImage");
-  var name = get("teamMemberModalName");
-  var about = get("teamMemberModalAbout");
-
-  if (!btns.length || !modal || !closeBtn || !img || !name || !about) {
-    return;
-  }
-
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-      var memberName = this.getAttribute("data-name") || "";
-      var memberAbout = this.getAttribute("data-about") || "";
-      var memberPhoto = this.getAttribute("data-photo") || "";
-
-      name.textContent = memberName;
-      var skills = memberAbout.split(" Interest:")[0];
-      about.textContent = skills;
-      img.src = memberPhoto;
-      img.alt = memberName;
-
-      show(modal);
-    });
-  }
-
-  closeBtn.addEventListener("click", hideTeam);
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      hideTeam();
-    }
-  });
-}
 
 function startSlider() {
   var hero = document.querySelector(".hero");
@@ -703,15 +570,11 @@ function start() {
   attachAddBtns();
   attachProductCartBtn();
   attachCartBtns();
-  attachClearBtns();
 
-  drawCart();
-  drawSidebar();
   drawDrawer();
 
   attachProductPopups();
   attachBlogPopups();
-  attachTeamPopups();
   attachEscape();
 
   attachFilter();
@@ -723,10 +586,11 @@ function start() {
     });
   }
 
-  var submitBtn = get("submit");
-  if (submitBtn) {
-    submitBtn.addEventListener("click", function () {
-      popup("Form submitted!");
+  var feedbackForm = get("feedbackForm");
+  if (feedbackForm) {
+    feedbackForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      popup("thanks for feedback");
     });
   }
 
