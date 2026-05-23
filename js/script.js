@@ -421,7 +421,6 @@ function attachCartBtns() {
     clearBtn.addEventListener("click", function () {
       clearCart();
       drawDrawer();
-      alertMsg("Cart cleared!");
     });
   }
 
